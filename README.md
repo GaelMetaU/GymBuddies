@@ -113,7 +113,7 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
 | email         | String | Email associated to the account (default) |
 | username      | String | User's nickname on screen                 |
 | password      | String | User's account password (default)         |
-| likedRoutines | Array  | User's liked routines                     |
+| savedRoutines | Array  | User's liked routines                     |
 
 
 **Routine**
@@ -124,12 +124,33 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
 | createdAt    | Date       | Creation date (default)                            |
 | updatedAt    | Date       | Last modification date (default)                   |
 | author       | String     | Reference to the routine's creator                 |
-| likeCount    | Int        | Number of users who liked the post                 |
+| saveCount    | Int        | Number of users who liked the post                 |
 | bodyZoneTags | Array      | Tags to the bodyzone the routine is focused        |
 | title        | String     | Name or identifier of the routine                  |
 | caption      | String     | Any comment or note the author leaves              |
-| excercises   | Dictionary | Array of excercises that compose the routine       |
+| exercises    | Dictionary | Array of exercises that compose the routine        |
 | placeTag     | String     | Tag to say if the routine is for gym, home or park |
+
+
+**ExcerciseInRoutine**
+
+| Property     | Type       | Description                                        |
+| ------------ | ---------- | -------------------------------------------------- |
+| Reps         | Bool       | True for reps, false for time                      |
+| time         | String     | Specify seconds or minutes                         |
+| amount       | Dictionary | Array of exercises that compose the routine        |
+| ResourceID   | String     | Tag to the exercise model to get videos, name, etc |
+
+
+**Exercises**
+
+| Property     | Type       | Description                                        |
+| ------------ | ---------- | -------------------------------------------------- |
+| objectID     | String     | User Identifier (default)                          |
+| createdAt    | Date       | Creation date (default)                            |
+| updatedAt    | Date       | Last modification date (default)                   |
+| video        | string     | URL to the video                                   |
+| bodyZoneTags | Dictionary | Tags to the bodyzone the exercise is focused       |
 
 
 **BodyZones**
