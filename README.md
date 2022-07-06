@@ -95,6 +95,11 @@ Also, a routine can be set to be done from home, in a park or in a gym, so you c
 * Create -> Home (Either if canceled post or completed it)
 * Buddies -> Add buddy / Chat view  **(STRETCH FEATURE)**
 
+
+### 4. Complex problems
+* Routine recommendation system
+* Routine searching system
+
 ## Wireframes
 
 #### Figma prototype
@@ -116,7 +121,9 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
 | username      | String | User's nickname on screen                 |
 | password      | String | User's account password (default)         |
 | savedRoutines | Array  | User's saved routines                     |
-| exercises     | Array  | User's saved exercises
+| exercises     | Array  | User's saved exercises                    |
+| level         | String | User's skill level                        |
+| place         | String | User's preferred workout place            |
 
 
 **Routine**
