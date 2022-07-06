@@ -30,7 +30,8 @@ Also, a routine can be set to be done from home, in a park or in a gym, so you c
 * A user can login
 * A user can see recommended routines on the feed. A ranking algorithm or system will be used (To be decided)
 * The session must be saved for users not having to log in everytime
-* A user can build an excercising routine specifying wich excercise and how many repetitions or how much time, and also assign where can it be done (gym, park or home).
+* A user can create original exercise and save it to build routines with them.
+* A user can build an exercising routine specifying wich excercise, (from the default library or an original one) and how many repetitions or how much time, and also assign where can it be done (gym, park or home).
 * A user can see its profile to see their own routines
 * A user can search for a routine depending on a particular body zone or excercise
 * A user can like another user's routines to save them in its profile
@@ -43,6 +44,7 @@ Also, a routine can be set to be done from home, in a park or in a gym, so you c
 * A user can filter it's liked routines to look fo a specific one.
 * A user can follow other users to stay tuned of their posts.
 * A user can get recommendations for places to excercise nearby.
+* A user can save exercises from other routines to later build routines with them.
 * Being able to add friends to workout together, you can send routines to the group or chat 
 
 ### 2. Screen Archetypes
@@ -113,7 +115,8 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
 | email         | String | Email associated to the account (default) |
 | username      | String | User's nickname on screen                 |
 | password      | String | User's account password (default)         |
-| savedRoutines | Array  | User's liked routines                     |
+| savedRoutines | Array  | User's saved routines                     |
+| exercises     | Array  | User's saved exercises
 
 
 **Routine**
@@ -149,6 +152,7 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
 | objectID     | String     | User Identifier (default)                          |
 | createdAt    | Date       | Creation date (default)                            |
 | updatedAt    | Date       | Last modification date (default)                   |
+| author       | String     | Reference to the exercise's creator                |
 | video        | string     | URL to the video                                   |
 | bodyZoneTags | Dictionary | Tags to the bodyzone the exercise is focused       |
 
@@ -181,3 +185,8 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
     * All data will come from the home feed, so no requests here.
 * Search
     * Get user's request results based on the algortihm or system designed
+    
+##### API's to be used
+* Google Maps API: Allows displaying a map and pinging locations. It also has better synergy with the Places API
+* Google Places API: Gives access to a huge list of places which will be used to retrieve parks and gyms near the user's location and display them in the map.
+* Parse: Parse own API and pod to pull all user data and posts.
