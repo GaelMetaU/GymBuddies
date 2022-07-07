@@ -120,10 +120,10 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
 | email         | String | Email associated to the account (default) |
 | username      | String | User's nickname on screen                 |
 | password      | String | User's account password (default)         |
-| savedRoutines | Array  | User's saved routines                     |
+| likedRoutines | Array  | User's saved routines                     |
 | exercises     | Array  | User's saved exercises                    |
-| level         | String | User's skill level                        |
-| place         | String | User's preferred workout place            |
+| skillLevel    | String | User's skill level                        |
+| workoutPlace  | String | User's preferred workout place            |
 
 
 **Routine**
@@ -134,11 +134,11 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
 | createdAt    | Date       | Creation date (default)                            |
 | updatedAt    | Date       | Last modification date (default)                   |
 | author       | String     | Reference to the routine's creator                 |
-| saveCount    | Int        | Number of users who liked the post                 |
+| likeCount    | Int        | Number of users who liked the post                 |
 | bodyZoneTags | Array      | Tags to the bodyzone the routine is focused        |
 | title        | String     | Name or identifier of the routine                  |
 | caption      | String     | Any comment or note the author leaves              |
-| exercises    | Dictionary | Array of exercises that compose the routine        |
+| exercises    | Array      | Array of exercises that compose the routine        |
 | placeTag     | String     | Tag to say if the routine is for gym, home or park |
 
 
@@ -147,8 +147,8 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
 | Property     | Type       | Description                                        |
 | ------------ | ---------- | -------------------------------------------------- |
 | Reps         | Bool       | True for reps, false for time                      |
-| time         | String     | Specify seconds or minutes                         |
-| amount       | Dictionary | Array of exercises that compose the routine        |
+| amountUnit   | String     | Specify seconds, minutes or reps                   |
+| amount       | Integer    | Amount of either seconds, minutes or reps          |
 | ResourceID   | String     | Tag to the exercise model to get videos, name, etc |
 
 
@@ -160,8 +160,8 @@ https://www.figma.com/file/rEp679zAVBdmXpQH7HhDaI/Untitled?node-id=3%3A3
 | createdAt    | Date       | Creation date (default)                            |
 | updatedAt    | Date       | Last modification date (default)                   |
 | author       | String     | Reference to the exercise's creator                |
-| video        | string     | URL to the video                                   |
-| bodyZoneTags | Dictionary | Tags to the bodyzone the exercise is focused       |
+| video        | String     | URL to the video                                   |
+| bodyZoneTag  | String     | Tags to the bodyzone the exercise is focused       |
 
 
 **BodyZones**
