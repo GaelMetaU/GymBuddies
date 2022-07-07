@@ -7,6 +7,8 @@
 
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
+#import "ParseManager.h"
+#import "SceneDelegate.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -21,18 +23,24 @@
 }
 
 
-#pragma mark - Button interactions
+#pragma mark - Button outlet actions
 
 
 - (IBAction)didTapLogin:(id)sender {
+    
     if(![self lookForEmptyFields]){
         NSString *username = self.usernameField.text;
         NSString *password = self.passwordField.text;
-        [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
+        
+        
+        [ParseManager logIn:username password:password completion:^(PFUser * user, NSError *  error){
             if (error != nil) {
                 [self wrongCredentialsAlert:[error localizedDescription]];
-            } else {
-                
+            }
+            else {
+                SceneDelegate *delegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Name" bundle:nil];
+                delegate.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"AppTabController"];
             }
         }];
     }
