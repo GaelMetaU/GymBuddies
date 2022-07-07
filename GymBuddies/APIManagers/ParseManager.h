@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ParseManager : NSObject
 +(void)logIn:(NSString *)username password:(NSString *)password completion:(void(^)(PFUser *user, NSError *error)) completion;
 
-+(void)signUp:(PFUser *)user;
++(void)signUp:(PFUser *)user completion:(void(^)(BOOL succeeded, NSError *error)) completion;
 
 @end
 

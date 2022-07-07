@@ -43,6 +43,18 @@
 
 
 - (IBAction)didTapSubmit:(id)sender {
+    
+    
+    if(![self lookForEmptyFields]){
+        [self emptyFieldAlert];
+        return;
+    }
+    
+    if(![self checkPasswordsMatching]){
+        [self passwordsNotMatchingAlert];
+        return;
+    }
+    
     NSString *email = self.emailField.text;
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
@@ -54,11 +66,58 @@
     user[@"skillLevel"] = self.skillLevel;
     user[@"workoutPlace"] = self.workoutPlace;
     
+    [ParseManager signUp:user];
+    
 }
 
 #pragma mark - Validations
 
 
+- (BOOL)lookForEmptyFields{
+    NSString *email = self.emailField.text;
+    NSString *username = self.usernameField.text;
+    NSString *password = self.passwordField.text;
+    NSString *confirmPassword = self.confirmPasswordField.text;
+    
+    if([username isEqualToString:@""] || [password isEqualToString:@""] || [confirmPassword isEqualToString:@""] || [email isEqualToString:@""]){
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
+-(BOOL)checkPasswordsMatching{
+    NSString *password = self.passwordField.text;
+    NSString *confirmPassword = self.confirmPasswordField.text;
+    
+    if([password isEqualToString:confirmPassword]){
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
+#pragma mark - Alerts
+
+-(void)emptyFieldAlert{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty field" message:@"There is one or more empty fields" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)passwordsNotMatchingAlert{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password matching" message:@"Make sure both passwords you provide are the same" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 
 @end
