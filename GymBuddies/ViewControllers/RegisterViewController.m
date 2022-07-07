@@ -69,6 +69,8 @@
     [ParseManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
         if(error != nil){
             [self submitErrorAlert:[error localizedDescription]];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
     
