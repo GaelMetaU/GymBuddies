@@ -18,6 +18,7 @@
 		8E70892628775752008B4238 /* GymBuddiesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E70892528775752008B4238 /* GymBuddiesUITests.m */; };
 		8E70892828775752008B4238 /* GymBuddiesUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E70892728775752008B4238 /* GymBuddiesUITestsLaunchTests.m */; };
 		8E70893528775C3B008B4238 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E70893428775C3B008B4238 /* Keys.plist */; };
+		8E70893D28777BF4008B4238 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E70893C28777BF4008B4238 /* LoginViewController.m */; };
 		DC9627D1E793C6AF8B7EB821 /* Pods_GymBuddies_GymBuddiesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */; };
 		F6FC2A8384B8A8A5B0EC6986 /* Pods_GymBuddiesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF314264FFF381257F8E7EB /* Pods_GymBuddiesTests.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,8 @@
 		8E70892528775752008B4238 /* GymBuddiesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GymBuddiesUITests.m; sourceTree = "<group>"; };
 		8E70892728775752008B4238 /* GymBuddiesUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GymBuddiesUITestsLaunchTests.m; sourceTree = "<group>"; };
 		8E70893428775C3B008B4238 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		8E70893B28777BF4008B4238 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8E70893C28777BF4008B4238 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymBuddies_GymBuddiesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A78856D56610EA9C5B4F401 /* Pods-GymBuddiesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymBuddiesTests.debug.xcconfig"; path = "Target Support Files/Pods-GymBuddiesTests/Pods-GymBuddiesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +136,7 @@
 		8E7088FE28775751008B4238 /* GymBuddies */ = {
 			isa = PBXGroup;
 			children = (
+				8E70893A28777BD2008B4238 /* ViewControllers */,
 				8E7088FF28775751008B4238 /* AppDelegate.h */,
 				8E70890028775751008B4238 /* AppDelegate.m */,
 				8E70890228775751008B4238 /* SceneDelegate.h */,
@@ -162,6 +166,15 @@
 				8E70892728775752008B4238 /* GymBuddiesUITestsLaunchTests.m */,
 			);
 			path = GymBuddiesUITests;
+			sourceTree = "<group>";
+		};
+		8E70893A28777BD2008B4238 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8E70893B28777BF4008B4238 /* LoginViewController.h */,
+				8E70893C28777BF4008B4238 /* LoginViewController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		E499C126898E599EA521D5A1 /* Frameworks */ = {
@@ -413,6 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E70893D28777BF4008B4238 /* LoginViewController.m in Sources */,
 				8E70890128775751008B4238 /* AppDelegate.m in Sources */,
 				8E70891228775752008B4238 /* main.m in Sources */,
 				8E70890428775751008B4238 /* SceneDelegate.m in Sources */,
