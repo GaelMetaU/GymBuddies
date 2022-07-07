@@ -45,7 +45,7 @@
 - (IBAction)didTapSubmit:(id)sender {
     
     
-    if(![self lookForEmptyFields]){
+    if([self lookForEmptyFields]){
         [self emptyFieldAlert];
         return;
     }
@@ -66,7 +66,11 @@
     user[@"skillLevel"] = self.skillLevel;
     user[@"workoutPlace"] = self.workoutPlace;
     
-    [ParseManager signUp:user];
+    [ParseManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
+        if(error != nil){
+            [self submitErrorAlert:[error localizedDescription]];
+        }
+    }];
     
 }
 
@@ -112,6 +116,16 @@
 
 -(void)passwordsNotMatchingAlert{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password matching" message:@"Make sure both passwords you provide are the same" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+-(void)submitErrorAlert:(NSString *)message{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Submit error" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];

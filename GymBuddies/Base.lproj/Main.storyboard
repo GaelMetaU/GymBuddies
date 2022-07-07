@@ -99,7 +99,7 @@
         <!--Register View Controller-->
         <scene sceneID="6BO-Gc-Gjw">
             <objects>
-                <viewController id="hje-hB-o4v" customClass="RegisterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" id="hje-hB-o4v" customClass="RegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vi0-Dn-HRY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

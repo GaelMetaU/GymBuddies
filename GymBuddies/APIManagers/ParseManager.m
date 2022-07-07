@@ -19,6 +19,7 @@
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             completion(succeeded, error);
     }];
+    
 }
 
 @end
