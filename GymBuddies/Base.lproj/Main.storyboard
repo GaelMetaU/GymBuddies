@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +84,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dSM-tO-HjJ">
             <objects>
-                <navigationController id="dbO-wn-KRV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationController" id="dbO-wn-KRV" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2D2-Y3-mfW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -232,11 +233,11 @@
             </objects>
             <point key="canvasLocation" x="-320" y="783"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="Gde-ya-1ez">
             <objects>
                 <navigationController id="7xl-gp-vWh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="9WR-bJ-IJp"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="9WR-bJ-IJp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="D9M-Gs-JF1">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -249,10 +250,10 @@
             </objects>
             <point key="canvasLocation" x="-959" y="1505"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="nFr-yc-B62">
             <objects>
-                <viewController id="FWJ-99-4N8" sceneMemberID="viewController">
+                <viewController id="FWJ-99-4N8" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H7H-pu-5KW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -265,27 +266,44 @@
             </objects>
             <point key="canvasLocation" x="-959" y="2223"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="7K7-AJ-WBH">
             <objects>
-                <viewController id="ysn-0R-0lG" sceneMemberID="viewController">
+                <viewController id="ysn-0R-0lG" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="chV-ca-SrA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjp-U9-rqK">
+                                <rect key="frame" x="295.5" y="88" width="98.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log out">
+                                    <imageReference key="image" image="rectangle.portrait.and.arrow.right" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapLogOut:" destination="ysn-0R-0lG" eventType="touchUpInside" id="Zuq-Ne-uLM"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="yWJ-4z-TlM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yWJ-4z-TlM" firstAttribute="trailing" secondItem="Cjp-U9-rqK" secondAttribute="trailing" constant="20" id="NFW-Hf-yEH"/>
+                            <constraint firstItem="Cjp-U9-rqK" firstAttribute="top" secondItem="yWJ-4z-TlM" secondAttribute="top" id="RCK-Bu-9Bk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BWa-hM-fGG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v21-fS-Nh5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="203" y="2223"/>
+            <point key="canvasLocation" x="202.89855072463769" y="2222.5446428571427"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="U7a-uS-JRg">
             <objects>
                 <navigationController id="rIT-aP-A0Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3lA-Vh-gre"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="3lA-Vh-gre"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AW5-o4-F8U">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -300,6 +318,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="108"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

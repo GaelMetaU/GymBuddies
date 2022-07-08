@@ -5,10 +5,10 @@
 //  Created by Gael Rodriguez Gomez on 7/7/22.
 //
 
-#import "ParseManager.h"
+#import "ParseAPIManager.h"
 
 
-@implementation ParseManager
+@implementation ParseAPIManager
 
 +(void)logIn:(NSString *)username password:(NSString *)password completion:(void (^)(PFUser * _Nonnull, NSError * _Nonnull))completion{
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
@@ -26,6 +26,9 @@
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable errorAPI){
         if(errorAPI){
             completion(errorAPI);
+        }
+        else{
+            completion(nil);
         }
     }];
 }

@@ -1,5 +1,5 @@
 //
-//  SettingsButton.h
+//  ProfileViewController.h
 //  GymBuddies
 //
 //  Created by Gael Rodriguez Gomez on 7/8/22.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SettingsButton : UIBarButtonItem
+@interface ProfileViewController : UIViewController
 
 @end
 

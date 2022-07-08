@@ -6,7 +6,7 @@
 //
 
 #import "RegisterViewController.h"
-#import "ParseManager.h"
+#import "ParseAPIManager.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
@@ -58,7 +58,7 @@
     user[@"skillLevel"] = self.skillLevel;
     user[@"workoutPlace"] = self.workoutPlace;
     
-    [ParseManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
+    [ParseAPIManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
         if(error != nil){
             [self submitErrorAlert:[error localizedDescription]];
         } else {

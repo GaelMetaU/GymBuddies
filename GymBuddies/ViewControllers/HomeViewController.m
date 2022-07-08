@@ -6,8 +6,11 @@
 //
 
 #import "HomeViewController.h"
+#import "ParseAPIManager.h"
 
 @interface HomeViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
+
 
 @end
 
@@ -15,7 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+}
+
+
+-(void)logOut{
+
 }
 
 /*

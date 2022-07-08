@@ -7,7 +7,7 @@
 
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
-#import "ParseManager.h"
+#import "ParseAPIManager.h"
 #import "SceneDelegate.h"
 
 @interface LoginViewController ()
@@ -33,7 +33,7 @@
         NSString *password = self.passwordField.text;
         
         
-        [ParseManager logIn:username password:password completion:^(PFUser * user, NSError *  error){
+        [ParseAPIManager logIn:username password:password completion:^(PFUser * user, NSError *  error){
             if (error != nil) {
                 [self wrongCredentialsAlert:[error localizedDescription]];
             }
