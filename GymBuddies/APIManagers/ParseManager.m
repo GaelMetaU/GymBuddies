@@ -7,6 +7,7 @@
 
 #import "ParseManager.h"
 
+
 @implementation ParseManager
 
 +(void)logIn:(NSString *)username password:(NSString *)password completion:(void (^)(PFUser * _Nonnull, NSError * _Nonnull))completion{
@@ -19,7 +20,15 @@
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             completion(succeeded, error);
     }];
-    
 }
+
++(void)logOut:(void(^)(NSError *error)) completion{
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable errorAPI){
+        if(errorAPI){
+            completion(errorAPI);
+        }
+    }];
+}
+
 
 @end

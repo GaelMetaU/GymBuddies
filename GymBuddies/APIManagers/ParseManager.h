@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(void)signUp:(PFUser *)user completion:(void(^)(BOOL succeeded, NSError *error)) completion;
 
++(void)logOut:(void(^)(NSError *error)) completion;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
