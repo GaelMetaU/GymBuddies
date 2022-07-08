@@ -29,21 +29,7 @@
 
 #pragma mark - Buttons interactions
 
-- (IBAction)updateSkillLevel:(id)sender {
-    NSString *levels[]= {@"BEGINNER",@"INTERMEDIATE",@"EXPERT"};
-    self.skillLevel = levels[[self.skillLevelControl selectedSegmentIndex]];
-}
-
-
-- (IBAction)updateWorkoutPlace:(id)sender {
-    NSString *places[]= {@"HOME",@"PARK",@"GYM"};
-    self.workoutPlace = places[[self.skillLevelControl selectedSegmentIndex]];
-}
-
-
-
 - (IBAction)didTapSubmit:(id)sender {
-    
     
     if([self lookForEmptyFields]){
         [self emptyFieldAlert];
@@ -54,6 +40,12 @@
         [self passwordsNotMatchingAlert];
         return;
     }
+    
+    NSString *levels[]= {@"BEGINNER",@"INTERMEDIATE",@"EXPERT"};
+    self.skillLevel = levels[[self.skillLevelControl selectedSegmentIndex]];
+    
+    NSString *places[]= {@"HOME",@"PARK",@"GYM"};
+    self.workoutPlace = places[[self.skillLevelControl selectedSegmentIndex]];
     
     NSString *email = self.emailField.text;
     NSString *username = self.usernameField.text;
