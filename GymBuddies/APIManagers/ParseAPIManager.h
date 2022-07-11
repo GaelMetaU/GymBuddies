@@ -10,15 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^ParseManagerAuthenticationCompletionBlock) (PFUser *user, NSError *error);
+typedef void (^ParseManagerRegisterCompletionBlock) (BOOL succeded, NSError *error);
+typedef void (^ParseManagerLogOutCompletionBlock) (NSError * _Nullable errorAPI);
+
+
 @interface ParseAPIManager : NSObject
 +(void)logIn:(NSString *)username
     password:(NSString *)password
-  completion:(void(^)(PFUser *user, NSError *error)) completion;
+  completion:(ParseManagerAuthenticationCompletionBlock) completion;
 
 +(void)signUp:(PFUser *)user
-   completion:(void(^)(BOOL succeeded, NSError *error)) completion;
+   completion:(ParseManagerRegisterCompletionBlock) completion;
 
-+(void)logOut:(void(^)(NSError *error)) completion;
++(void)logOut:(ParseManagerLogOutCompletionBlock) completion;
 
 
 @end

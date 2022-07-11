@@ -12,28 +12,35 @@
 
 +(void)logIn:(NSString *)username
     password:(NSString *)password
-  completion:(void (^)(PFUser * _Nonnull, NSError * _Nonnull))completion {
-    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
-        completion(user, error);
-    }];
+  completion:(ParseManagerAuthenticationCompletionBlock)completion {
+
+    ParseManagerAuthenticationCompletionBlock block = ^(PFUser *user, NSError *error) {completion(user,error);};
+    
+    [PFUser logInWithUsernameInBackground:username password:password block:block];
 }
+
 
 + (void)signUp:(PFUser *)user
-    completion:(void (^)(BOOL, NSError * _Nonnull))completion{
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            completion(succeeded, error);
-    }];
+    completion:(ParseManagerRegisterCompletionBlock)completion{
+    
+    ParseManagerRegisterCompletionBlock block = ^(BOOL succeeded, NSError *error) {completion(succeeded, error);};
+    
+    [user signUpInBackgroundWithBlock:block];
 }
 
-+(void)logOut:(void(^)(NSError *error)) completion{
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable errorAPI){
+
++(void)logOut:(ParseManagerLogOutCompletionBlock) completion{
+    
+    ParseManagerLogOutCompletionBlock block = ^void(NSError *errorAPI) {
         if(errorAPI){
             completion(errorAPI);
         }
         else{
             completion(nil);
         }
-    }];
+    };
+    
+    [PFUser logOutInBackgroundWithBlock:block];
 }
 
 
