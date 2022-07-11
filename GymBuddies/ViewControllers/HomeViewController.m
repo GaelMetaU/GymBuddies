@@ -22,10 +22,6 @@
 }
 
 
--(void)logOut{
-
-}
-
 /*
 #pragma mark - Navigation
 

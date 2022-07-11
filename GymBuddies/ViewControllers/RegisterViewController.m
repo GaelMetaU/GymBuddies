@@ -31,13 +31,13 @@
 
 - (IBAction)didTapSubmit:(id)sender {
     
-    if([self lookForEmptyFields]){
-        [self emptyFieldAlert];
+    if([self _lookForEmptyFields]){
+        [self _emptyFieldAlert];
         return;
     }
     
-    if(![self checkPasswordsMatching]){
-        [self passwordsNotMatchingAlert];
+    if(![self _checkPasswordsMatching]){
+        [self _passwordsNotMatchingAlert];
         return;
     }
     
@@ -60,7 +60,7 @@
     
     [ParseAPIManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
         if(error != nil){
-            [self submitErrorAlert:[error localizedDescription]];
+            [self _submitErrorAlert:[error localizedDescription]];
         } else {
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -71,7 +71,7 @@
 #pragma mark - Validations
 
 
-- (BOOL)lookForEmptyFields{
+- (BOOL)_lookForEmptyFields{
     NSString *email = self.emailField.text;
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
@@ -85,21 +85,17 @@
 }
 
 
--(BOOL)checkPasswordsMatching{
+-(BOOL)_checkPasswordsMatching{
     NSString *password = self.passwordField.text;
     NSString *confirmPassword = self.confirmPasswordField.text;
     
-    if([password isEqualToString:confirmPassword]){
-        return YES;
-    } else {
-        return NO;
-    }
+    return [password isEqualToString:confirmPassword];
 }
 
 
 #pragma mark - Alerts
 
--(void)emptyFieldAlert{
+-(void)_emptyFieldAlert{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty field" message:@"There is one or more empty fields" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -108,7 +104,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
--(void)passwordsNotMatchingAlert{
+-(void)_passwordsNotMatchingAlert{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password matching" message:@"Make sure both passwords you provide are the same" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -118,7 +114,7 @@
 }
 
 
--(void)submitErrorAlert:(NSString *)message{
+-(void)_submitErrorAlert:(NSString *)message{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Submit error" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];

@@ -35,7 +35,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Sign up"/>
                                 <connections>
-                                    <action selector="didTapSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N3W-BE-tjV"/>
                                     <segue destination="hje-hB-o4v" kind="show" id="s9J-oW-ixY"/>
                                 </connections>
                             </button>

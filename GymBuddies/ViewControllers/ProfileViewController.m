@@ -16,9 +16,13 @@
 
 - (IBAction)didTapLogOut:(id)sender {
     [ParseAPIManager logOut:^(NSError * _Nonnull error) {
-        SceneDelegate *delegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        delegate.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+        if(error){
+            [self _logOutErrorAlert:error.localizedDescription];
+        } else {
+            SceneDelegate *delegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            delegate.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+        }
     }];
 }
 
@@ -32,7 +36,7 @@
 
 #pragma mark - Alerts
 
--(void)logOutErrorAlert:(NSString *)message{
+-(void)_logOutErrorAlert:(NSString *)message{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error logging out" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];

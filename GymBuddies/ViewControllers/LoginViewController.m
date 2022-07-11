@@ -28,14 +28,14 @@
 
 - (IBAction)didTapLogin:(id)sender {
     
-    if(![self lookForEmptyFields]){
+    if(![self _lookForEmptyFields]){
         NSString *username = self.usernameField.text;
         NSString *password = self.passwordField.text;
         
         
         [ParseAPIManager logIn:username password:password completion:^(PFUser * user, NSError *  error){
             if (error != nil) {
-                [self wrongCredentialsAlert:[error localizedDescription]];
+                [self _wrongCredentialsAlert:[error localizedDescription]];
             }
             else {
                 SceneDelegate *delegate = (SceneDelegate *)self.view.window.windowScene.delegate;
@@ -45,19 +45,14 @@
         }];
     }
     else {
-        [self emptyFieldAlert];
+        [self _emptyFieldAlert];
     }
 }
 
 
-- (IBAction)didTapSignup:(id)sender {
-}
-
-
-
 #pragma mark - Alerts and validations
 
-- (BOOL)lookForEmptyFields{
+- (BOOL)_lookForEmptyFields{
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
     
@@ -69,7 +64,7 @@
 }
 
 
--(void)wrongCredentialsAlert:(NSString *)message{
+-(void)_wrongCredentialsAlert:(NSString *)message{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Wrong username or password" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -79,7 +74,7 @@
 }
 
 
--(void)emptyFieldAlert{
+-(void)_emptyFieldAlert{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty field" message:@"There is one or more empty fields" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
