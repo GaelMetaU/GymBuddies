@@ -7,6 +7,7 @@
 
 #import "RegisterViewController.h"
 #import "ParseAPIManager.h"
+#import "DataModelBlocks.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
@@ -14,9 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *skillLevelControl;
-@property (strong, nonatomic) NSString *skillLevel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *workoutPlaceControl;
-@property (strong, nonatomic) NSString *workoutPlace;
 
 @end
 
@@ -46,18 +45,16 @@
         return;
     }
     
-    NSString *levels[]= {@"BEGINNER",@"INTERMEDIATE",@"EXPERT"};
-    self.skillLevel = levels[[self.skillLevelControl selectedSegmentIndex]];
+    TrainingLevels level = [self.skillLevelControl selectedSegmentIndex];
     
-    NSString *places[]= {@"HOME",@"PARK",@"GYM"};
-    self.workoutPlace = places[[self.skillLevelControl selectedSegmentIndex]];
+    WorkoutPlace place = [self.workoutPlaceControl selectedSegmentIndex];
     
     PFUser *user = [[PFUser alloc]init];
     user[@"email"] = email;
     user[@"username"] = username;
     user[@"password"] = password;
-    user[@"skillLevel"] = self.skillLevel;
-    user[@"workoutPlace"] = self.workoutPlace;
+    user[@"skillLevel"] = [NSNumber numberWithLong:level];
+    user[@"workoutPlace"] = [NSNumber numberWithLong:place];
     
     [ParseAPIManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
         if(error != nil){
@@ -71,9 +68,9 @@
 
 #pragma mark - Validations
 
+
 static NSString *standardizeUserAuthInput(NSString *input) {
     if (input.length > 0) {
-            // removing trailing white spaces
             input = [input stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     }
     return input;

@@ -78,6 +78,8 @@
 		8E7089462878DD81008B4238 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		8E70894F2878EBFE008B4238 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		8E7089502878EBFE008B4238 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		8E708952287CA6CC008B4238 /* DataModelBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataModelBlocks.h; sourceTree = "<group>"; };
+		8E708954287CC0E3008B4238 /* ColorPallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPallet.h; sourceTree = "<group>"; };
 		981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymBuddies_GymBuddiesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A78856D56610EA9C5B4F401 /* Pods-GymBuddiesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymBuddiesTests.debug.xcconfig"; path = "Target Support Files/Pods-GymBuddiesTests/Pods-GymBuddiesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +150,7 @@
 		8E7088FE28775751008B4238 /* GymBuddies */ = {
 			isa = PBXGroup;
 			children = (
+				8E708953287CBECC008B4238 /* AppData */,
 				8E70893E28778DE4008B4238 /* APIManagers */,
 				8E70893A28777BD2008B4238 /* ViewControllers */,
 				8E7088FF28775751008B4238 /* AppDelegate.h */,
@@ -203,6 +206,15 @@
 				8E70894028778E90008B4238 /* ParseAPIManager.m */,
 			);
 			path = APIManagers;
+			sourceTree = "<group>";
+		};
+		8E708953287CBECC008B4238 /* AppData */ = {
+			isa = PBXGroup;
+			children = (
+				8E708952287CA6CC008B4238 /* DataModelBlocks.h */,
+				8E708954287CC0E3008B4238 /* ColorPallet.h */,
+			);
+			path = AppData;
 			sourceTree = "<group>";
 		};
 		E499C126898E599EA521D5A1 /* Frameworks */ = {
