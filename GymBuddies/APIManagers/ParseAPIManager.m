@@ -12,7 +12,7 @@
 
 +(void)logIn:(NSString *)username
     password:(NSString *)password
-  completion:(void (^)(PFUser * _Nonnull, NSError * _Nonnull))completion{
+  completion:(void (^)(PFUser * _Nonnull, NSError * _Nonnull))completion {
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         completion(user, error);
     }];

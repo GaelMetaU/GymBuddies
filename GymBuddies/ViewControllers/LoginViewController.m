@@ -55,12 +55,8 @@
 - (BOOL)_lookForEmptyFields{
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
-    
-    if([username isEqualToString:@""] || [password isEqualToString:@""]){
-        return YES;
-    } else {
-        return NO;
-    }
+
+    return (username.length == 0 || password.length == 0);
 }
 
 

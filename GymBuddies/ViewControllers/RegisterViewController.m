@@ -31,7 +31,12 @@
 
 - (IBAction)didTapSubmit:(id)sender {
     
-    if([self _lookForEmptyFields]){
+    NSString *email = standardizeUserAuthInput(self.emailField.text);
+    NSString *username = standardizeUserAuthInput(self.usernameField.text);
+    NSString *password = standardizeUserAuthInput(self.passwordField.text) ;
+    NSString *confirmPassword = standardizeUserAuthInput(self.confirmPasswordField.text);
+    
+    if([self _lookForEmptyFields:username email:email password:password confirmPassword:confirmPassword]){
         [self _emptyFieldAlert];
         return;
     }
@@ -46,10 +51,6 @@
     
     NSString *places[]= {@"HOME",@"PARK",@"GYM"};
     self.workoutPlace = places[[self.skillLevelControl selectedSegmentIndex]];
-    
-    NSString *email = self.emailField.text;
-    NSString *username = self.usernameField.text;
-    NSString *password = self.passwordField.text;
     
     PFUser *user = [[PFUser alloc]init];
     user[@"email"] = email;
@@ -70,18 +71,22 @@
 
 #pragma mark - Validations
 
-
-- (BOOL)_lookForEmptyFields{
-    NSString *email = self.emailField.text;
-    NSString *username = self.usernameField.text;
-    NSString *password = self.passwordField.text;
-    NSString *confirmPassword = self.confirmPasswordField.text;
-    
-    if([username isEqualToString:@""] || [password isEqualToString:@""] || [confirmPassword isEqualToString:@""] || [email isEqualToString:@""]){
-        return YES;
-    } else {
-        return NO;
+static NSString *standardizeUserAuthInput(NSString *input) {
+    if (input.length > 0) {
+            // removing trailing white spaces
+            input = [input stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     }
+    return input;
+}
+
+    
+- (BOOL)_lookForEmptyFields:(NSString *)username
+                      email:(NSString *)email
+                   password:(NSString *)password
+            confirmPassword:(NSString *)confirmPassword {
+    
+    return (username.length == 0 || password.length == 0 || confirmPassword == 0 || email.length == 0);
+
 }
 
 
