@@ -78,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-320" y="31"/>
+            <point key="canvasLocation" x="-2012" y="783"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dSM-tO-HjJ">
@@ -94,7 +94,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9rs-LT-GHG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-320" y="-686"/>
+            <point key="canvasLocation" x="-2825" y="783"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="6BO-Gc-Gjw">
@@ -212,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ioT-XL-vCi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="476.81159420289856" y="30.803571428571427"/>
+            <point key="canvasLocation" x="-1214" y="783"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2Yo-TU-v1y">
@@ -224,6 +224,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="gaX-47-1Ds" kind="relationship" relationship="viewControllers" id="atY-9i-GVk"/>
                         <segue destination="7xl-gp-vWh" kind="relationship" relationship="viewControllers" id="JUT-gQ-Ity"/>
                         <segue destination="rIT-aP-A0Q" kind="relationship" relationship="viewControllers" id="RUH-xB-Hxr"/>
                     </connections>
@@ -231,6 +232,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gau-j7-eor" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-320" y="783"/>
+        </scene>
+        <!--Create-->
+        <scene sceneID="IZ2-ig-p5s">
+            <objects>
+                <navigationController id="gaX-47-1Ds" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Create" image="plus.circle" catalog="system" id="wCf-W4-JGp"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2rg-v2-Rgu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qY7-1U-Eu8" kind="relationship" relationship="rootViewController" id="rev-Tk-D62"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JxG-x3-z1T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1462" y="1505"/>
         </scene>
         <!--Home-->
         <scene sceneID="Gde-ya-1ez">
@@ -247,7 +265,80 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4L-7N-Vm5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-959" y="1505"/>
+            <point key="canvasLocation" x="-320" y="1505"/>
+        </scene>
+        <!--Create Routine View Controller-->
+        <scene sceneID="0EV-BM-w1F">
+            <objects>
+                <viewController id="qY7-1U-Eu8" customClass="CreateRoutineViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zIJ-yR-u5d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKI-6B-sKc">
+                                <rect key="frame" x="117" y="431" width="157" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add an exercise">
+                                    <imageReference key="image" image="plus.square.dashed" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="2gL-kd-hDQ" kind="show" id="fJW-4s-qVz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Nm8-A6-jFe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="S4F-Ye-TJF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JEP-Xd-vfC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1462.3188405797102" y="2236.6071428571427"/>
+        </scene>
+        <!--Add Exercise View Controller-->
+        <scene sceneID="zo9-BX-arA">
+            <objects>
+                <viewController id="2gL-kd-hDQ" customClass="AddExerciseViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gcG-QJ-QhU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgb-iH-3pr">
+                                <rect key="frame" x="113" y="782" width="188" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="plus.square.dashed" catalog="system" title="Create a new exercise"/>
+                                <connections>
+                                    <segue destination="CT0-GG-GD7" kind="show" id="irB-gC-wkU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Meo-Es-nWf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="S84-34-f0w"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YOW-oQ-x0M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1462" y="2958"/>
+        </scene>
+        <!--Create Exercise View Controller-->
+        <scene sceneID="vjJ-au-9fJ">
+            <objects>
+                <viewController id="CT0-GG-GD7" customClass="CreateExerciseViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YId-ny-VDl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zaS-Qm-y1Z"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="G5y-Bb-bgd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m5K-k2-dYS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-607" y="2958"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="nFr-yc-B62">
@@ -263,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEJ-JL-HpB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-959" y="2223"/>
+            <point key="canvasLocation" x="-320" y="2237"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="7K7-AJ-WBH">
@@ -296,7 +387,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v21-fS-Nh5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="202.89855072463769" y="2222.5446428571427"/>
+            <point key="canvasLocation" x="742" y="2237"/>
         </scene>
         <!--Profile-->
         <scene sceneID="U7a-uS-JRg">
@@ -313,12 +404,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ue-xo-jBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="203" y="1505"/>
+            <point key="canvasLocation" x="743" y="1505"/>
         </scene>
     </scenes>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="plus.circle" catalog="system" width="128" height="121"/>
+        <image name="plus.square.dashed" catalog="system" width="128" height="114"/>
         <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="108"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

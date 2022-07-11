@@ -23,6 +23,9 @@
 		8E70894428779209008B4238 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E70894328779209008B4238 /* RegisterViewController.m */; };
 		8E7089472878DD81008B4238 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7089462878DD81008B4238 /* HomeViewController.m */; };
 		8E7089512878EBFE008B4238 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7089502878EBFE008B4238 /* ProfileViewController.m */; };
+		8E708957287CDB69008B4238 /* CreateRoutineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E708956287CDB69008B4238 /* CreateRoutineViewController.m */; };
+		8E70895A287CDB8C008B4238 /* AddExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E708959287CDB8C008B4238 /* AddExerciseViewController.m */; };
+		8E70895D287CDBF4008B4238 /* CreateExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E70895C287CDBF4008B4238 /* CreateExerciseViewController.m */; };
 		DC9627D1E793C6AF8B7EB821 /* Pods_GymBuddies_GymBuddiesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */; };
 		F6FC2A8384B8A8A5B0EC6986 /* Pods_GymBuddiesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF314264FFF381257F8E7EB /* Pods_GymBuddiesTests.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +83,12 @@
 		8E7089502878EBFE008B4238 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		8E708952287CA6CC008B4238 /* DataModelBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataModelBlocks.h; sourceTree = "<group>"; };
 		8E708954287CC0E3008B4238 /* ColorPallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPallet.h; sourceTree = "<group>"; };
+		8E708955287CDB69008B4238 /* CreateRoutineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateRoutineViewController.h; sourceTree = "<group>"; };
+		8E708956287CDB69008B4238 /* CreateRoutineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateRoutineViewController.m; sourceTree = "<group>"; };
+		8E708958287CDB8C008B4238 /* AddExerciseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddExerciseViewController.h; sourceTree = "<group>"; };
+		8E708959287CDB8C008B4238 /* AddExerciseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddExerciseViewController.m; sourceTree = "<group>"; };
+		8E70895B287CDBF4008B4238 /* CreateExerciseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateExerciseViewController.h; sourceTree = "<group>"; };
+		8E70895C287CDBF4008B4238 /* CreateExerciseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateExerciseViewController.m; sourceTree = "<group>"; };
 		981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymBuddies_GymBuddiesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A78856D56610EA9C5B4F401 /* Pods-GymBuddiesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymBuddiesTests.debug.xcconfig"; path = "Target Support Files/Pods-GymBuddiesTests/Pods-GymBuddiesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +204,12 @@
 				8E7089462878DD81008B4238 /* HomeViewController.m */,
 				8E70894F2878EBFE008B4238 /* ProfileViewController.h */,
 				8E7089502878EBFE008B4238 /* ProfileViewController.m */,
+				8E708955287CDB69008B4238 /* CreateRoutineViewController.h */,
+				8E708956287CDB69008B4238 /* CreateRoutineViewController.m */,
+				8E708958287CDB8C008B4238 /* AddExerciseViewController.h */,
+				8E708959287CDB8C008B4238 /* AddExerciseViewController.m */,
+				8E70895B287CDBF4008B4238 /* CreateExerciseViewController.h */,
+				8E70895C287CDBF4008B4238 /* CreateExerciseViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -470,7 +485,10 @@
 				8E70894428779209008B4238 /* RegisterViewController.m in Sources */,
 				8E7089512878EBFE008B4238 /* ProfileViewController.m in Sources */,
 				8E70890128775751008B4238 /* AppDelegate.m in Sources */,
+				8E70895D287CDBF4008B4238 /* CreateExerciseViewController.m in Sources */,
+				8E70895A287CDB8C008B4238 /* AddExerciseViewController.m in Sources */,
 				8E70891228775752008B4238 /* main.m in Sources */,
+				8E708957287CDB69008B4238 /* CreateRoutineViewController.m in Sources */,
 				8E70890428775751008B4238 /* SceneDelegate.m in Sources */,
 				8E7089472878DD81008B4238 /* HomeViewController.m in Sources */,
 				8E70894128778E90008B4238 /* ParseAPIManager.m in Sources */,
