@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Exercise.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CreateExerciseViewController : UIViewController
-
+@interface CreateExerciseViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (nonatomic, strong) Exercise *exercise;
 @end
 
 NS_ASSUME_NONNULL_END

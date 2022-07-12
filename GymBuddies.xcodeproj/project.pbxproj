@@ -688,6 +688,8 @@
 				DEVELOPMENT_TEAM = WZZPSA36LP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GymBuddies/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take video";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need library access to upload images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -716,6 +718,8 @@
 				DEVELOPMENT_TEAM = WZZPSA36LP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GymBuddies/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access to take video";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need library access to upload images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

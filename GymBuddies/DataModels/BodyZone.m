@@ -9,4 +9,11 @@
 
 @implementation BodyZone
 
+@dynamic title;
+@dynamic icon;
+
++ (nonnull NSString *)parseClassName {
+    return @"BodyZone";
+}
+
 @end
