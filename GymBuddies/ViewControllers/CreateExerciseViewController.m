@@ -10,9 +10,14 @@
 #import "AVFoundation/AVFoundation.h"
 #import "MobileCoreServices/MobileCoreServices.h"
 #import "Parse/Parse.h"
+#import "Parse/PFImageView.h"
 
 @interface CreateExerciseViewController ()
 @property (strong, nonatomic) UIImagePickerController *mediaPicker;
+@property (weak, nonatomic) IBOutlet PFImageView *imagePreview;
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
+@property (weak, nonatomic) IBOutlet UITextView *captionField;
+
 @end
 
 @implementation CreateExerciseViewController
@@ -33,7 +38,6 @@
 - (IBAction)uploadVideo:(id)sender {
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
         self.mediaPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        //self.mediaPicker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) UTTypeMovie, nil];
         self.mediaPicker.mediaTypes = @[(NSString*)kUTTypeMovie, (NSString*)kUTTypeAVIMovie, (NSString*)kUTTypeVideo, (NSString*)kUTTypeMPEG4];
         [self presentViewController:self.mediaPicker animated:YES completion:nil];
     }
@@ -43,6 +47,7 @@
 - (IBAction)uploadImage:(id)sender {
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
         self.mediaPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        self.mediaPicker.mediaTypes = @[(NSString*)kUTTypeImage];
         [self presentViewController:self.mediaPicker animated:YES completion:nil];
     }
 }
@@ -55,18 +60,19 @@
         NSURL *urlVideo = [info objectForKey:UIImagePickerControllerMediaURL];
         PFFileObject *video = [Exercise getPFFileFromURL:urlVideo];
         self.exercise.video = video;
-        
     } else {
-        PFFileObject *image = [Exercise getPFFileFromImage:info[UIImagePickerControllerOriginalImage]];
-        self.exercise.image = image;
+        self.imagePreview.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
-
-    
+    /*self.imagePreview.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [self dismissViewControllerAnimated:YES completion:nil];*/
 }
 
 
+
+
 /*
+ 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
