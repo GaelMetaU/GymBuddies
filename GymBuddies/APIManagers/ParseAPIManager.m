@@ -21,9 +21,9 @@
 
 
 + (void)signUp:(PFUser *)user
-    completion:(ParseManagerRegisterCompletionBlock)completion{
+    completion:(ParseManagerCreateCompletionBlock)completion{
     
-    ParseManagerRegisterCompletionBlock block = ^(BOOL succeeded, NSError *error) {completion(succeeded, error);};
+    ParseManagerCreateCompletionBlock block = ^(BOOL succeeded, NSError *error) {completion(succeeded, error);};
     
     [user signUpInBackgroundWithBlock:block];
 }
@@ -82,10 +82,16 @@
 }
 
 
-+ (void)saveExercise:(Exercise *)exercise completion:(void(^)(BOOL succeeded, NSError * _Nullable error)) completion{
-    [exercise saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
++ (void)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion{
+    
+    NSLog(@"Trying");
+    ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError *error){
         completion(succeeded, error);
-    }];
+    };
+    
+    [exercise saveInBackgroundWithBlock:block];
+    NSLog(@"Trying");
+
 }
 
 @end

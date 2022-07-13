@@ -12,6 +12,7 @@
 #import "Parse/Parse.h"
 #import "Parse/PFImageView.h"
 #import "ParseAPIManager.h"
+#import "CommonValidations.h"
 #import "BodyZoneCollectionViewCell.h"
 #import "BodyZone.h"
 
@@ -43,7 +44,21 @@
 #pragma mark - Saving exercise query and validations
 
 - (IBAction)didTapSave:(id)sender {
+    NSString *title = [CommonValidations standardizeUserAuthInput:self.titleField.text];
+    NSString *caption = [CommonValidations standardizeUserAuthInput:self.captionField.text];
+    NSLog(@"%@ , %@", title, caption);
+    self.exercise.title = title;
+    self.exercise.caption = caption;
+    self.exercise.author = [PFUser currentUser];
     
+    [Exercise saveExercise:self.exercise completion:^(BOOL succeeded, NSError * _Nullable error) {
+            if(!succeeded){
+                NSLog(@"no save %@", error.localizedDescription);
+                [self _failedSavingAlert:error.localizedDescription];
+            } else{
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+    }];
 }
 
 
@@ -57,7 +72,7 @@
 -(void)fetchBodyZones{
     [ParseAPIManager fetchBodyZones:^(NSArray * _Nonnull elements, NSError * _Nonnull error) {
         if(elements == nil){
-            [self _failedFetching:error.localizedDescription];
+            [self _failedFetchingAlert:error.localizedDescription];
         } else {
             self.bodyZones = elements;
             [self.bodyZoneCollectionView reloadData];
@@ -102,13 +117,13 @@
 #pragma mark -Selecting media
 
 
-/*- (IBAction)uploadVideo:(id)sender {
+- (IBAction)uploadVideo:(id)sender {
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
         self.mediaPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         self.mediaPicker.mediaTypes = @[(NSString*)kUTTypeMovie, (NSString*)kUTTypeAVIMovie, (NSString*)kUTTypeVideo, (NSString*)kUTTypeMPEG4];
         [self presentViewController:self.mediaPicker animated:YES completion:nil];
     }
-}*/
+}
 
 
 - (IBAction)uploadImage:(id)sender {
@@ -140,8 +155,18 @@
 
 #pragma mark -Alerts
 
--(void)_failedFetching:(NSString *)message{
+-(void)_failedFetchingAlert:(NSString *)message{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error fetching data" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+-(void)_failedSavingAlert:(NSString *)message{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error saving exercise" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
