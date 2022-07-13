@@ -29,6 +29,7 @@
 		8E708961287CEF40008B4238 /* BodyZone.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E708960287CEF40008B4238 /* BodyZone.m */; };
 		8E708964287CEF5A008B4238 /* Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E708963287CEF5A008B4238 /* Exercise.m */; };
 		8E832E98287F351300BF0024 /* BodyZoneCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832E97287F351300BF0024 /* BodyZoneCollectionViewCell.m */; };
+		8E832E9B287F4B9200BF0024 /* CommonValidations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832E9A287F4B9200BF0024 /* CommonValidations.m */; };
 		DC9627D1E793C6AF8B7EB821 /* Pods_GymBuddies_GymBuddiesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */; };
 		F6FC2A8384B8A8A5B0EC6986 /* Pods_GymBuddiesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF314264FFF381257F8E7EB /* Pods_GymBuddiesTests.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,8 @@
 		8E708963287CEF5A008B4238 /* Exercise.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Exercise.m; sourceTree = "<group>"; };
 		8E832E96287F351300BF0024 /* BodyZoneCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyZoneCollectionViewCell.h; sourceTree = "<group>"; };
 		8E832E97287F351300BF0024 /* BodyZoneCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyZoneCollectionViewCell.m; sourceTree = "<group>"; };
+		8E832E99287F4B9200BF0024 /* CommonValidations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonValidations.h; sourceTree = "<group>"; };
+		8E832E9A287F4B9200BF0024 /* CommonValidations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonValidations.m; sourceTree = "<group>"; };
 		981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymBuddies_GymBuddiesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A78856D56610EA9C5B4F401 /* Pods-GymBuddiesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymBuddiesTests.debug.xcconfig"; path = "Target Support Files/Pods-GymBuddiesTests/Pods-GymBuddiesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,7 +173,7 @@
 			children = (
 				8E832E95287F34F000BF0024 /* ViewCells */,
 				8E70895E287CEEC2008B4238 /* DataModels */,
-				8E708953287CBECC008B4238 /* AppData */,
+				8E708953287CBECC008B4238 /* AppCommonResources */,
 				8E70893E28778DE4008B4238 /* APIManagers */,
 				8E70893A28777BD2008B4238 /* ViewControllers */,
 				8E7088FF28775751008B4238 /* AppDelegate.h */,
@@ -234,13 +237,15 @@
 			path = APIManagers;
 			sourceTree = "<group>";
 		};
-		8E708953287CBECC008B4238 /* AppData */ = {
+		8E708953287CBECC008B4238 /* AppCommonResources */ = {
 			isa = PBXGroup;
 			children = (
 				8E708952287CA6CC008B4238 /* DataModelBlocks.h */,
+				8E832E99287F4B9200BF0024 /* CommonValidations.h */,
+				8E832E9A287F4B9200BF0024 /* CommonValidations.m */,
 				8E708954287CC0E3008B4238 /* ColorPallet.h */,
 			);
-			path = AppData;
+			path = AppCommonResources;
 			sourceTree = "<group>";
 		};
 		8E70895E287CEEC2008B4238 /* DataModels */ = {
@@ -525,6 +530,7 @@
 				8E708957287CDB69008B4238 /* CreateRoutineViewController.m in Sources */,
 				8E70890428775751008B4238 /* SceneDelegate.m in Sources */,
 				8E7089472878DD81008B4238 /* HomeViewController.m in Sources */,
+				8E832E9B287F4B9200BF0024 /* CommonValidations.m in Sources */,
 				8E70894128778E90008B4238 /* ParseAPIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

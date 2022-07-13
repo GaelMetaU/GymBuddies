@@ -18,7 +18,7 @@
 @interface CreateExerciseViewController ()
 @property (strong, nonatomic) UIImagePickerController *mediaPicker;
 @property (weak, nonatomic) IBOutlet PFImageView *imagePreview;
-@property (weak, nonatomic) IBOutlet UITextField *titleField;
+@property (weak, nonatomic) IBOutlet UITextView *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *captionField;
 @property (strong, nonatomic) NSArray *bodyZones;
 @property (weak, nonatomic) IBOutlet UICollectionView *bodyZoneCollectionView;
@@ -40,6 +40,17 @@
 }
 
 
+#pragma mark - Saving exercise query and validations
+
+- (IBAction)didTapSave:(id)sender {
+    
+}
+
+
+-(void)_checkEmptyLabels{
+    
+}
+
 
 #pragma mark -Collection View Data
 
@@ -53,6 +64,7 @@
         }
     }];
 }
+
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -73,16 +85,30 @@
     return self.bodyZones.count;
 }
 
-#pragma mark -Uploading media
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [self.bodyZoneCollectionView cellForItemAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor secondarySystemBackgroundColor];
+    NSLog(@"%@", self.bodyZones[indexPath.row][@"title"]);
+    self.exercise.bodyZoneTag = self.bodyZones[indexPath.row];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [self.bodyZoneCollectionView cellForItemAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor systemBackgroundColor];
+}
 
 
-- (IBAction)uploadVideo:(id)sender {
+#pragma mark -Selecting media
+
+
+/*- (IBAction)uploadVideo:(id)sender {
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
         self.mediaPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         self.mediaPicker.mediaTypes = @[(NSString*)kUTTypeMovie, (NSString*)kUTTypeAVIMovie, (NSString*)kUTTypeVideo, (NSString*)kUTTypeMPEG4];
         [self presentViewController:self.mediaPicker animated:YES completion:nil];
     }
-}
+}*/
 
 
 - (IBAction)uploadImage:(id)sender {
@@ -103,12 +129,13 @@
         self.exercise.video = video;
     } else {
         self.imagePreview.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        PFFileObject *image = [Exercise getPFFileFromImage:self.imagePreview.image];
+        self.exercise.image = image;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     /*self.imagePreview.image = [info objectForKey:UIImagePickerControllerOriginalImage];
     [self dismissViewControllerAnimated:YES completion:nil];*/
 }
-
 
 
 #pragma mark -Alerts

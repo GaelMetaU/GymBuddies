@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) BodyZone *bodyZoneTag;
 + (PFFileObject *)getPFFileFromURL:(NSURL *)video;
 + (PFFileObject *)getPFFileFromImage:(UIImage *)image;
++ (void)saveExercise:(Exercise *)exercise{
+    
+}
 @end
 
 NS_ASSUME_NONNULL_END

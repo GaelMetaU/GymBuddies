@@ -420,6 +420,9 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Save it!"/>
+                                                <connections>
+                                                    <action selector="didTapSave:" destination="CT0-GG-GD7" eventType="touchUpInside" id="Y10-R2-h7v"/>
+                                                </connections>
                                             </button>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nqF-oR-7kz">
                                                 <rect key="frame" x="20" y="275" width="374" height="120"/>
@@ -450,8 +453,8 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OuY-As-VLe" customClass="PFImageView">
-                                                                    <rect key="frame" x="8.5" y="2" width="81" height="81"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OuY-As-VLe" customClass="PFImageView">
+                                                                    <rect key="frame" x="8.5" y="2" width="80" height="81"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="81" id="O1R-87-DfC"/>
                                                                         <constraint firstAttribute="width" constant="81" id="f2f-eD-z2X"/>
@@ -529,7 +532,9 @@
                     <navigationItem key="navigationItem" id="G5y-Bb-bgd"/>
                     <connections>
                         <outlet property="bodyZoneCollectionView" destination="nqF-oR-7kz" id="qwg-mG-G3S"/>
+                        <outlet property="captionField" destination="PTg-9b-gKj" id="H6B-kP-wIE"/>
                         <outlet property="imagePreview" destination="lHc-RJ-0rK" id="quH-PC-Zcj"/>
+                        <outlet property="titleField" destination="6kG-IG-Xgd" id="JPl-75-x09"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5K-k2-dYS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
