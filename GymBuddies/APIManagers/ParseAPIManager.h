@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^ParseManagerAuthenticationCompletionBlock) (PFUser *user, NSError *error);
 typedef void (^ParseManagerRegisterCompletionBlock) (BOOL succeded, NSError *error);
 typedef void (^ParseManagerLogOutCompletionBlock) (NSError * _Nullable errorAPI);
+typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, NSError *error);
 
 
 @interface ParseAPIManager : NSObject

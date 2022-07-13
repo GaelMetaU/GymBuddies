@@ -44,4 +44,14 @@
 }
 
 
++(void)fetchBodyZones:(ParseManagerFetchingDataRowsCompletionBlock) completion{
+    PFQuery *query = [PFQuery queryWithClassName:@"BodyZone"];
+    
+    ParseManagerFetchingDataRowsCompletionBlock block = ^void(NSArray *elements, NSError *error){
+        completion(elements, error);
+    };
+    
+    [query findObjectsInBackgroundWithBlock:block]; 
+}
+
 @end
