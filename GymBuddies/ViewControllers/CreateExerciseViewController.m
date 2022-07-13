@@ -125,11 +125,11 @@
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if([mediaType isEqualToString:(NSString*)kUTTypeMovie] ||  [mediaType isEqualToString:(NSString*)kUTTypeAVIMovie] || [mediaType isEqualToString:(NSString*)kUTTypeVideo] || [mediaType isEqualToString:(NSString*)kUTTypeMPEG4]){
         NSURL *urlVideo = [info objectForKey:UIImagePickerControllerMediaURL];
-        PFFileObject *video = [Exercise getPFFileFromURL:urlVideo];
+        PFFileObject *video = [ParseAPIManager getPFFileFromURL:urlVideo];
         self.exercise.video = video;
     } else {
         self.imagePreview.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-        PFFileObject *image = [Exercise getPFFileFromImage:self.imagePreview.image];
+        PFFileObject *image = [ParseAPIManager getPFFileFromImage:self.imagePreview.image];
         self.exercise.image = image;
         [self dismissViewControllerAnimated:YES completion:nil];
     }

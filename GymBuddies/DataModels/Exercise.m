@@ -20,34 +20,6 @@
     return @"Exercise";
 }
 
-+ (PFFileObject *)getPFFileFromURL:(NSURL *)video{
-    if(!video){
-        return nil;
-    }
-    NSData *videoData = [NSData dataWithContentsOfURL:video];
-    // get image data and check if that is not nil
-    if (!videoData) {
-        return nil;
-    }
-    
-    return [PFFileObject fileObjectWithName:@"video.mov" data:videoData];
-}
-
-
-+ (PFFileObject *)getPFFileFromImage:(UIImage *)image{
-    if(!image){
-        return nil;
-    }
-    NSData *imageData = UIImagePNGRepresentation(image);
-    // get image data and check if that is not nil
-    if (!imageData) {
-        return nil;
-    }
-    
-    return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
-}
-
-
 
 
 @end

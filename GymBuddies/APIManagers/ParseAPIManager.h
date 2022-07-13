@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Parse/Parse.h"
+#import "Exercise.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +29,11 @@ typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, 
 
 +(void)fetchBodyZones:(ParseManagerFetchingDataRowsCompletionBlock) completion;
 
++ (PFFileObject *)getPFFileFromURL:(NSURL *)video;
+
++ (PFFileObject *)getPFFileFromImage:(UIImage *)image;
+
++ (void)saveExercise:(Exercise *)exercise completion:(void(^)(BOOL succeeded, NSError * _Nullable error)) completion;
 
 @end
 
