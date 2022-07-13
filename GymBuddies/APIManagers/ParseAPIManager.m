@@ -51,7 +51,7 @@
         completion(elements, error);
     };
     
-    [query findObjectsInBackgroundWithBlock:block]; 
+    [query findObjectsInBackgroundWithBlock:block];
 }
 
 @end

@@ -11,32 +11,67 @@
 #import "MobileCoreServices/MobileCoreServices.h"
 #import "Parse/Parse.h"
 #import "Parse/PFImageView.h"
+#import "ParseAPIManager.h"
+#import "BodyZoneCollectionViewCell.h"
+#import "BodyZone.h"
 
 @interface CreateExerciseViewController ()
 @property (strong, nonatomic) UIImagePickerController *mediaPicker;
 @property (weak, nonatomic) IBOutlet PFImageView *imagePreview;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *captionField;
-
+@property (strong, nonatomic) NSArray *bodyZones;
+@property (weak, nonatomic) IBOutlet UICollectionView *bodyZoneCollectionView;
 @end
 
 @implementation CreateExerciseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Media picker set up
     self.mediaPicker = [UIImagePickerController new];
     self.mediaPicker.delegate = self;
     self.mediaPicker.allowsEditing = YES;
+    // Collection view set up
+    self.bodyZoneCollectionView.dataSource = self;
+    self.bodyZoneCollectionView.delegate = self;
+    [self fetchBodyZones];
+    
 }
 
 
 
 #pragma mark -Collection View Data
 
+-(void)fetchBodyZones{
+    [ParseAPIManager fetchBodyZones:^(NSArray * _Nonnull elements, NSError * _Nonnull error) {
+        if(elements == nil){
+            [self _failedFetching:error.localizedDescription];
+        } else {
+            self.bodyZones = elements;
+            [self.bodyZoneCollectionView reloadData];
+        }
+    }];
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
 
 
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    BodyZoneCollectionViewCell *cell = [self.bodyZoneCollectionView dequeueReusableCellWithReuseIdentifier:@"BodyZoneCollectionViewCell" forIndexPath:indexPath];
+    BodyZone *bodyZone = self.bodyZones[indexPath.item];
+    cell.iconView.file = bodyZone[@"icon"];
+    [cell.iconView loadInBackground];
+    cell.titleLabel.text = bodyZone[@"title"];
+    
+    return cell;
+}
 
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.bodyZones.count;
+}
 
 #pragma mark -Uploading media
 
@@ -76,6 +111,16 @@
 
 
 
+#pragma mark -Alerts
+
+-(void)_failedFetching:(NSString *)message{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error fetching data" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 /*
  

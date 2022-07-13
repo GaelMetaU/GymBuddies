@@ -26,6 +26,8 @@ typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, 
 
 +(void)logOut:(ParseManagerLogOutCompletionBlock) completion;
 
++(void)fetchBodyZones:(ParseManagerFetchingDataRowsCompletionBlock) completion;
+
 
 @end
 

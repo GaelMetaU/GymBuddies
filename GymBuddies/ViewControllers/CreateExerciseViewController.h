@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CreateExerciseViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface CreateExerciseViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) Exercise *exercise;
 @end
 
