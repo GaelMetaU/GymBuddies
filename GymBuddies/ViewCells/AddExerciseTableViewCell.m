@@ -20,4 +20,16 @@
     // Configure the view for the selected state
 }
 
+-(void)setExercise:(Exercise *)exercise{
+    self.exerciseImage.file = exercise.image;
+    self.bodyZoneIcon.file = exercise.bodyZoneTag.icon;
+    
+    [self.exerciseImage loadInBackground];
+    [self.bodyZoneIcon loadInBackground];
+    
+    self.titleLabel.text = exercise.title;
+    self.captionLabel.text = exercise.caption;
+    
+}
+
 @end

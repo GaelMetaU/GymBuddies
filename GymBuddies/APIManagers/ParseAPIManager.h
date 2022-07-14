@@ -30,6 +30,8 @@ typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, 
 
 +(void)fetchBodyZones:(ParseManagerFetchingDataRowsCompletionBlock) completion;
 
++(void)fetchUsersExercises:(ParseManagerFetchingDataRowsCompletionBlock) completion;
+
 + (Exercise *)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion;
 
 + (PFFileObject *)getPFFileFromURL:(NSURL *)video;

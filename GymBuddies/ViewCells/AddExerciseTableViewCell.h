@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Parse/PFImageView.h"
+#import "Exercise.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet PFImageView *bodyZoneIcon;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
-
+-(void)setExercise:(Exercise *)exercise;
 @end
 
 NS_ASSUME_NONNULL_END

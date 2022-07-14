@@ -107,4 +107,18 @@
     return newExercise;
 }
 
+
++(void)fetchUsersExercises:(ParseManagerFetchingDataRowsCompletionBlock) completion{
+    PFQuery *query = [PFQuery queryWithClassName:@"SavedExercise"];
+    [query includeKeys:@[@"exercise", @"exercise.author", @"exercise.bodyZoneTag", @"exercise.image"]];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+
+    ParseManagerFetchingDataRowsCompletionBlock block = ^void(NSArray *elements, NSError *error){
+        completion(elements, error);
+    };
+    
+    [query findObjectsInBackgroundWithBlock:block];
+    
+}
+
 @end
