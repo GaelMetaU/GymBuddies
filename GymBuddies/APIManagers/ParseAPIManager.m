@@ -81,7 +81,7 @@
 }
 
 
-+ (void)saveExercise:(Exercise *)exercise
++ (Exercise *)saveExercise:(Exercise *)exercise
            completion:(ParseManagerCreateCompletionBlock) completion {
     Exercise *newExercise = [Exercise new];
     newExercise.title = exercise.title;
@@ -104,6 +104,7 @@
     savedExercise.user = exercise.author;
     savedExercise.exercise = newExercise;
     [savedExercise saveInBackgroundWithBlock:block];
+    return newExercise;
 }
 
 @end

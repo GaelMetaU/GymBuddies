@@ -60,9 +60,9 @@
     [self _setTitleCaptionValues];
     
     Exercise *exercise = [Exercise initWithAttributes:self.exerciseTitle caption:self.exerciseCaption author:[PFUser currentUser] video:self.exerciseVideo image:self.exerciseImage bodyZoneTag:self.exerciseBodyZoneTag];
-
     
-    [ParseAPIManager saveExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
+    // When saving the object, it reasigns itself to include the objectID from Parse
+    exercise = [ParseAPIManager saveExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
             if(!succeeded){
                 [self _failedSavingAlert:error.localizedDescription];
             } else{
@@ -125,7 +125,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [self.bodyZoneCollectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor secondarySystemBackgroundColor];
-    NSLog(@"%@", self.bodyZones[indexPath.row][@"title"]);
     self.exerciseBodyZoneTag = self.bodyZones[indexPath.row];
 }
 
