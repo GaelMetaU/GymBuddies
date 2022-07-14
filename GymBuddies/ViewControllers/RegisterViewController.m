@@ -6,7 +6,8 @@
 //
 
 #import "RegisterViewController.h"
-#import "ParseManager.h"
+#import "ParseAPIManager.h"
+#import "DataModelBlocks.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
@@ -14,9 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *skillLevelControl;
-@property (strong, nonatomic) NSString *skillLevel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *workoutPlaceControl;
-@property (strong, nonatomic) NSString *workoutPlace;
 
 @end
 
@@ -31,36 +30,35 @@
 
 - (IBAction)didTapSubmit:(id)sender {
     
-    if([self lookForEmptyFields]){
-        [self emptyFieldAlert];
+    NSString *email = standardizeUserAuthInput(self.emailField.text);
+    NSString *username = standardizeUserAuthInput(self.usernameField.text);
+    NSString *password = standardizeUserAuthInput(self.passwordField.text) ;
+    NSString *confirmPassword = standardizeUserAuthInput(self.confirmPasswordField.text);
+    
+    if([self _lookForEmptyFields:username email:email password:password confirmPassword:confirmPassword]){
+        [self _emptyFieldAlert];
         return;
     }
     
-    if(![self checkPasswordsMatching]){
-        [self passwordsNotMatchingAlert];
+    if(![self _checkPasswordsMatching]){
+        [self _passwordsNotMatchingAlert];
         return;
     }
     
-    NSString *levels[]= {@"BEGINNER",@"INTERMEDIATE",@"EXPERT"};
-    self.skillLevel = levels[[self.skillLevelControl selectedSegmentIndex]];
+    TrainingLevels level = [self.skillLevelControl selectedSegmentIndex];
     
-    NSString *places[]= {@"HOME",@"PARK",@"GYM"};
-    self.workoutPlace = places[[self.skillLevelControl selectedSegmentIndex]];
-    
-    NSString *email = self.emailField.text;
-    NSString *username = self.usernameField.text;
-    NSString *password = self.passwordField.text;
+    WorkoutPlace place = [self.workoutPlaceControl selectedSegmentIndex];
     
     PFUser *user = [[PFUser alloc]init];
     user[@"email"] = email;
     user[@"username"] = username;
     user[@"password"] = password;
-    user[@"skillLevel"] = self.skillLevel;
-    user[@"workoutPlace"] = self.workoutPlace;
+    user[@"skillLevel"] = [NSNumber numberWithLong:level];
+    user[@"workoutPlace"] = [NSNumber numberWithLong:place];
     
-    [ParseManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
+    [ParseAPIManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
         if(error != nil){
-            [self submitErrorAlert:[error localizedDescription]];
+            [self _submitErrorAlert:[error localizedDescription]];
         } else {
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -71,35 +69,35 @@
 #pragma mark - Validations
 
 
-- (BOOL)lookForEmptyFields{
-    NSString *email = self.emailField.text;
-    NSString *username = self.usernameField.text;
-    NSString *password = self.passwordField.text;
-    NSString *confirmPassword = self.confirmPasswordField.text;
-    
-    if([username isEqualToString:@""] || [password isEqualToString:@""] || [confirmPassword isEqualToString:@""] || [email isEqualToString:@""]){
-        return YES;
-    } else {
-        return NO;
+static NSString *standardizeUserAuthInput(NSString *input) {
+    if (input.length > 0) {
+            input = [input stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     }
+    return input;
+}
+
+    
+- (BOOL)_lookForEmptyFields:(NSString *)username
+                      email:(NSString *)email
+                   password:(NSString *)password
+            confirmPassword:(NSString *)confirmPassword {
+    
+    return (username.length == 0 || password.length == 0 || confirmPassword == 0 || email.length == 0);
+
 }
 
 
--(BOOL)checkPasswordsMatching{
+-(BOOL)_checkPasswordsMatching{
     NSString *password = self.passwordField.text;
     NSString *confirmPassword = self.confirmPasswordField.text;
     
-    if([password isEqualToString:confirmPassword]){
-        return YES;
-    } else {
-        return NO;
-    }
+    return [password isEqualToString:confirmPassword];
 }
 
 
 #pragma mark - Alerts
 
--(void)emptyFieldAlert{
+-(void)_emptyFieldAlert{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty field" message:@"There is one or more empty fields" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -108,7 +106,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
--(void)passwordsNotMatchingAlert{
+-(void)_passwordsNotMatchingAlert{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password matching" message:@"Make sure both passwords you provide are the same" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -118,7 +116,7 @@
 }
 
 
--(void)submitErrorAlert:(NSString *)message{
+-(void)_submitErrorAlert:(NSString *)message{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Submit error" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
