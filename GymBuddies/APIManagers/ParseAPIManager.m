@@ -63,7 +63,6 @@
     if (!videoData) {
         return nil;
     }
-    
     return [PFFileObject fileObjectWithName:@"video.mov" data:videoData];
 }
 
@@ -82,16 +81,21 @@
 }
 
 
-+ (void)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion{
++ (void)saveExercise:(Exercise *)exercise
+           completion:(ParseManagerCreateCompletionBlock) completion {
+    Exercise *newExercise = [Exercise new];
+    newExercise.title = exercise.title;
+    newExercise.image = exercise.image;
+    newExercise.caption = exercise.caption;
+    newExercise.author = exercise.author;
+    newExercise.video = exercise.video;
+    newExercise.bodyZoneTag = exercise.bodyZoneTag;
     
-    NSLog(@"Trying");
-    ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError *error){
+    ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError * _Nullable error){
         completion(succeeded, error);
     };
     
-    [exercise saveInBackgroundWithBlock:block];
-    NSLog(@"Trying");
-
+    [newExercise saveInBackgroundWithBlock:block];
 }
 
 @end

@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^ParseManagerAuthenticationCompletionBlock) (PFUser *user, NSError *error);
-typedef void (^ParseManagerCreateCompletionBlock) (BOOL succeded, NSError *error);
+typedef void (^ParseManagerCreateCompletionBlock) (BOOL succeeded, NSError *error);
 typedef void (^ParseManagerLogOutCompletionBlock) (NSError * _Nullable errorAPI);
 typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, NSError *error);
 
@@ -29,11 +29,11 @@ typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, 
 
 +(void)fetchBodyZones:(ParseManagerFetchingDataRowsCompletionBlock) completion;
 
++ (void)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion;
+
 + (PFFileObject *)getPFFileFromURL:(NSURL *)video;
 
 + (PFFileObject *)getPFFileFromImage:(UIImage *)image;
-
-//+ (void)saveExercise:(Exercise *)exercise completion:(void(^)(BOOL succeeded, NSError * _Nullable error)) completion;
 
 @end
 

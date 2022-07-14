@@ -7,7 +7,6 @@
 
 #import <Parse/Parse.h>
 #import "BodyZone.h"
-#import "ParseAPIManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,8 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFFileObject *video;
 @property (nonatomic, strong) PFFileObject *image;
 @property (nonatomic, strong) BodyZone *bodyZoneTag;
-+ (void)saveExercise:(Exercise *)exercise completion:(void(^)(BOOL succeeded, NSError * _Nullable error)) completion;
-
++(Exercise *) initWithAttributes:(NSString *)exerciseTitle
+                         caption:(NSString *)exerciseCaption
+                          author:(PFUser *)exerciseAuthor
+                           video:(PFFileObject *)exerciseVideo
+                           image:(PFFileObject *)exerciseImage
+                     bodyZoneTag:(BodyZone *)exerciseBodyZoneTag;
 @end
 
 NS_ASSUME_NONNULL_END

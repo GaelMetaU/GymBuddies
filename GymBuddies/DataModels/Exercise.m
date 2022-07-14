@@ -20,23 +20,21 @@
     return @"Exercise";
 }
 
-+ (void)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion{
++(Exercise *) initWithAttributes:(NSString *)exerciseTitle
+                         caption:(NSString *)exerciseCaption
+                          author:(PFUser *)exerciseAuthor
+                           video:(PFFileObject *)exerciseVideo
+                           image:(PFFileObject *)exerciseImage
+                     bodyZoneTag:(BodyZone *)exerciseBodyZoneTag{
+    Exercise *exercise = [Exercise new];
+    exercise.title = exerciseTitle;
+    exercise.image = exerciseImage;
+    exercise.caption = exerciseCaption;
+    exercise.author = exerciseAuthor;
+    exercise.video = exerciseVideo;
+    exercise.bodyZoneTag = exerciseBodyZoneTag;
     
-    Exercise *newExercise = [Exercise new];
-    newExercise.title = exercise.title;
-    newExercise.image = exercise.image;
-    newExercise.caption = exercise.caption;
-    newExercise.author = exercise.author;
-    newExercise.video = exercise.video;
-    newExercise.bodyZoneTag = exercise.bodyZoneTag;
-    
-    ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError * _Nullable error){
-        completion(succeeded, error);
-    };
-    
-    [newExercise saveInBackgroundWithBlock:block];
-
+    return exercise;
 }
-
 
 @end

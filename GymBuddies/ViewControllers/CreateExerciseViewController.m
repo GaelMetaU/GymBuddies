@@ -23,6 +23,13 @@
 @property (weak, nonatomic) IBOutlet UITextView *captionField;
 @property (strong, nonatomic) NSArray *bodyZones;
 @property (weak, nonatomic) IBOutlet UICollectionView *bodyZoneCollectionView;
+
+@property (strong, nonatomic) NSString *exerciseTitle;
+@property (strong, nonatomic) NSString *exerciseCaption;
+@property (strong, nonatomic) PFFileObject *exerciseImage;
+@property (strong, nonatomic) PFFileObject *exerciseVideo;
+@property (strong, nonatomic) BodyZone *exerciseBodyZoneTag;
+
 @end
 
 @implementation CreateExerciseViewController
@@ -44,26 +51,40 @@
 #pragma mark - Saving exercise query and validations
 
 - (IBAction)didTapSave:(id)sender {
-    NSString *title = [CommonValidations standardizeUserAuthInput:self.titleField.text];
-    NSString *caption = [CommonValidations standardizeUserAuthInput:self.captionField.text];
-    NSLog(@"%@ , %@", title, caption);
-    self.exercise.title = title;
-    self.exercise.caption = caption;
-    self.exercise.author = [PFUser currentUser];
+    if(self.exerciseBodyZoneTag.title == nil){
+        [self _emptyBodyZoneTagAlert];
+        return;
+    }
     
-    [Exercise saveExercise:self.exercise completion:^(BOOL succeeded, NSError * _Nullable error) {
+    // Sets the fields value to the posts, set default values if empty
+    [self _setTitleCaptionValues];
+    
+    Exercise *exercise = [Exercise initWithAttributes:self.exerciseTitle caption:self.exerciseCaption author:[PFUser currentUser] video:self.exerciseVideo image:self.exerciseImage bodyZoneTag:self.exerciseBodyZoneTag];
+
+    
+    [ParseAPIManager saveExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
             if(!succeeded){
-                NSLog(@"no save %@", error.localizedDescription);
                 [self _failedSavingAlert:error.localizedDescription];
             } else{
+                [self.delegate didCreateExercise:exercise];
                 [self.navigationController popViewControllerAnimated:YES];
             }
     }];
 }
 
 
--(void)_checkEmptyLabels{
+-(void)_setTitleCaptionValues{
+    NSString *title = [CommonValidations standardizeUserAuthInput:self.titleField.text];
+    NSString *caption = [CommonValidations standardizeUserAuthInput:self.captionField.text];
+    if(title.length == 0){
+        title = [NSString stringWithFormat:@"%@ Exercise", self.exerciseBodyZoneTag.title];
+    }
+    if(caption.length == 0){
+        caption = [NSString stringWithFormat:@"%@ Exercise", self.exerciseBodyZoneTag.title];
+    }
     
+    self.exerciseTitle = title;
+    self.exerciseCaption = caption;
 }
 
 
@@ -105,7 +126,7 @@
     UICollectionViewCell *cell = [self.bodyZoneCollectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor secondarySystemBackgroundColor];
     NSLog(@"%@", self.bodyZones[indexPath.row][@"title"]);
-    self.exercise.bodyZoneTag = self.bodyZones[indexPath.row];
+    self.exerciseBodyZoneTag = self.bodyZones[indexPath.row];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -141,11 +162,11 @@
     if([mediaType isEqualToString:(NSString*)kUTTypeMovie] ||  [mediaType isEqualToString:(NSString*)kUTTypeAVIMovie] || [mediaType isEqualToString:(NSString*)kUTTypeVideo] || [mediaType isEqualToString:(NSString*)kUTTypeMPEG4]){
         NSURL *urlVideo = [info objectForKey:UIImagePickerControllerMediaURL];
         PFFileObject *video = [ParseAPIManager getPFFileFromURL:urlVideo];
-        self.exercise.video = video;
+        self.exerciseVideo = video;
     } else {
         self.imagePreview.image = [info objectForKey:UIImagePickerControllerOriginalImage];
         PFFileObject *image = [ParseAPIManager getPFFileFromImage:self.imagePreview.image];
-        self.exercise.image = image;
+        self.exerciseImage = image;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     /*self.imagePreview.image = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -167,6 +188,16 @@
 
 -(void)_failedSavingAlert:(NSString *)message{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error saving exercise" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+-(void)_emptyBodyZoneTagAlert{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"The exercise has no body zone" message:@"Pick a body zone for your exercise" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
