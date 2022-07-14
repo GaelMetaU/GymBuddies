@@ -6,8 +6,10 @@
 //
 
 #import "AddExerciseViewController.h"
+#import "ParseAPIManager.h"
 
 @interface AddExerciseViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -15,7 +17,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+
+#pragma mark - Table view methods
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
 }
 
 /*

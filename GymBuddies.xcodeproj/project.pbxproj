@@ -31,6 +31,7 @@
 		8E832E98287F351300BF0024 /* BodyZoneCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832E97287F351300BF0024 /* BodyZoneCollectionViewCell.m */; };
 		8E832E9B287F4B9200BF0024 /* CommonValidations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832E9A287F4B9200BF0024 /* CommonValidations.m */; };
 		8E832E9E28809DF200BF0024 /* SavedExercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832E9D28809DF200BF0024 /* SavedExercise.m */; };
+		8E832EA12880B1D000BF0024 /* AddExerciseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832EA02880B1D000BF0024 /* AddExerciseTableViewCell.m */; };
 		DC9627D1E793C6AF8B7EB821 /* Pods_GymBuddies_GymBuddiesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */; };
 		F6FC2A8384B8A8A5B0EC6986 /* Pods_GymBuddiesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF314264FFF381257F8E7EB /* Pods_GymBuddiesTests.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,8 @@
 		8E832E9A287F4B9200BF0024 /* CommonValidations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonValidations.m; sourceTree = "<group>"; };
 		8E832E9C28809DF200BF0024 /* SavedExercise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavedExercise.h; sourceTree = "<group>"; };
 		8E832E9D28809DF200BF0024 /* SavedExercise.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedExercise.m; sourceTree = "<group>"; };
+		8E832E9F2880B1D000BF0024 /* AddExerciseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddExerciseTableViewCell.h; sourceTree = "<group>"; };
+		8E832EA02880B1D000BF0024 /* AddExerciseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddExerciseTableViewCell.m; sourceTree = "<group>"; };
 		981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymBuddies_GymBuddiesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A78856D56610EA9C5B4F401 /* Pods-GymBuddiesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymBuddiesTests.debug.xcconfig"; path = "Target Support Files/Pods-GymBuddiesTests/Pods-GymBuddiesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,6 +272,8 @@
 			children = (
 				8E832E96287F351300BF0024 /* BodyZoneCollectionViewCell.h */,
 				8E832E97287F351300BF0024 /* BodyZoneCollectionViewCell.m */,
+				8E832E9F2880B1D000BF0024 /* AddExerciseTableViewCell.h */,
+				8E832EA02880B1D000BF0024 /* AddExerciseTableViewCell.m */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -537,6 +542,7 @@
 				8E70890428775751008B4238 /* SceneDelegate.m in Sources */,
 				8E7089472878DD81008B4238 /* HomeViewController.m in Sources */,
 				8E832E9B287F4B9200BF0024 /* CommonValidations.m in Sources */,
+				8E832EA12880B1D000BF0024 /* AddExerciseTableViewCell.m in Sources */,
 				8E70894128778E90008B4238 /* ParseAPIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
