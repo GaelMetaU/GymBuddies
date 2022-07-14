@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "Parse/Parse.h"
 #import "Exercise.h"
+#import "SavedExercise.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

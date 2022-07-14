@@ -207,7 +207,7 @@
                         <outlet property="confirmPasswordField" destination="d2f-ey-CFe" id="fSi-ji-GWd"/>
                         <outlet property="emailField" destination="nW5-55-IXY" id="GCk-T9-vYp"/>
                         <outlet property="passwordField" destination="Avx-6R-T1m" id="Adz-Ng-H7a"/>
-                        <outlet property="skillLevelControl" destination="45g-Uz-Isw" id="caj-1P-Nvl"/>
+                        <outlet property="trainingLevelControl" destination="45g-Uz-Isw" id="gAy-0v-i2U"/>
                         <outlet property="usernameField" destination="IKa-Qp-6x5" id="uGM-Mh-vrp"/>
                         <outlet property="workoutPlaceControl" destination="Dhk-Ld-A9H" id="Q61-tj-5W7"/>
                     </connections>
@@ -307,24 +307,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgb-iH-3pr">
-                                <rect key="frame" x="113" y="782" width="188" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgb-iH-3pr">
+                                <rect key="frame" x="97" y="98" width="220" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="LSe-eW-8Ga"/>
+                                    <constraint firstAttribute="height" constant="35" id="h5Z-8x-bYX"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="plus.square.dashed" catalog="system" title="Create a new exercise"/>
                                 <connections>
                                     <segue destination="CT0-GG-GD7" kind="show" id="irB-gC-wkU"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="07a-ng-VoO">
+                                <rect key="frame" x="0.0" y="167" width="414" height="646"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Meo-Es-nWf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Pgb-iH-3pr" firstAttribute="centerX" secondItem="Meo-Es-nWf" secondAttribute="centerX" id="NGu-gy-fXO"/>
+                            <constraint firstItem="Pgb-iH-3pr" firstAttribute="top" secondItem="Meo-Es-nWf" secondAttribute="top" constant="10" id="gVE-O1-q6u"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S84-34-f0w"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YOW-oQ-x0M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1462" y="2958"/>
+            <point key="canvasLocation" x="-1462.3188405797102" y="2957.8125"/>
         </scene>
         <!--Create Exercise View Controller-->
         <scene sceneID="vjJ-au-9fJ">

@@ -93,9 +93,17 @@
     
     ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError * _Nullable error){
         completion(succeeded, error);
+        if(!succeeded){
+            return;
+        }
     };
     
     [newExercise saveInBackgroundWithBlock:block];
+    
+    SavedExercise *savedExercise = [SavedExercise new];
+    savedExercise.user = exercise.author;
+    savedExercise.exercise = newExercise;
+    [savedExercise saveInBackgroundWithBlock:block];
 }
 
 @end

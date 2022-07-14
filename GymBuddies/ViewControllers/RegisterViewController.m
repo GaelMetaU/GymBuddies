@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *skillLevelControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *trainingLevelControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *workoutPlaceControl;
 
 @end
@@ -46,7 +46,7 @@
         return;
     }
     
-    TrainingLevels level = [self.skillLevelControl selectedSegmentIndex];
+    TrainingLevels level = [self.trainingLevelControl selectedSegmentIndex];
     
     WorkoutPlace place = [self.workoutPlaceControl selectedSegmentIndex];
     
@@ -54,7 +54,7 @@
     user[@"email"] = email;
     user[@"username"] = username;
     user[@"password"] = password;
-    user[@"skillLevel"] = [NSNumber numberWithLong:level];
+    user[@"trainingLevel"] = [NSNumber numberWithLong:level];
     user[@"workoutPlace"] = [NSNumber numberWithLong:place];
     
     [ParseAPIManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
