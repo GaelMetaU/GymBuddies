@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AddExerciseTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet PFImageView *exerciseImage;
 @property (weak, nonatomic) IBOutlet PFImageView *bodyZoneIcon;
+@property (weak, nonatomic) IBOutlet PFImageView *authorProfilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 -(void)setExercise:(Exercise *)exercise;
 @end
 
