@@ -88,7 +88,6 @@
 		8E70894F2878EBFE008B4238 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		8E7089502878EBFE008B4238 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		8E708952287CA6CC008B4238 /* DataModelBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataModelBlocks.h; sourceTree = "<group>"; };
-		8E708954287CC0E3008B4238 /* ColorPallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPallet.h; sourceTree = "<group>"; };
 		8E708955287CDB69008B4238 /* CreateRoutineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateRoutineViewController.h; sourceTree = "<group>"; };
 		8E708956287CDB69008B4238 /* CreateRoutineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateRoutineViewController.m; sourceTree = "<group>"; };
 		8E708958287CDB8C008B4238 /* AddExerciseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddExerciseViewController.h; sourceTree = "<group>"; };
@@ -249,7 +248,6 @@
 				8E708952287CA6CC008B4238 /* DataModelBlocks.h */,
 				8E832E99287F4B9200BF0024 /* CommonValidations.h */,
 				8E832E9A287F4B9200BF0024 /* CommonValidations.m */,
-				8E708954287CC0E3008B4238 /* ColorPallet.h */,
 			);
 			path = AppCommonResources;
 			sourceTree = "<group>";

@@ -1,5 +1,5 @@
 //
-//  ParseManager.h
+//  ParseAPIManager.h
 //  GymBuddies
 //
 //  Created by Gael Rodriguez Gomez on 7/7/22.

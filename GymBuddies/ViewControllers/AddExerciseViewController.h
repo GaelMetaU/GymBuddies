@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddExerciseViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface AddExerciseViewController : UIViewController
 
 @end
 
