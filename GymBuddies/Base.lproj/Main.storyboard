@@ -307,21 +307,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgb-iH-3pr">
-                                <rect key="frame" x="97" y="98" width="220" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgb-iH-3pr">
+                                <rect key="frame" x="348" y="88" width="46" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="LSe-eW-8Ga"/>
-                                    <constraint firstAttribute="height" constant="35" id="h5Z-8x-bYX"/>
+                                    <constraint firstAttribute="width" constant="46" id="KNf-9G-aVe"/>
+                                    <constraint firstAttribute="height" constant="46" id="v4B-6k-tK0"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="plus.square.dashed" catalog="system" title="Create a new exercise"/>
+                                <buttonConfiguration key="configuration" style="filled" image="plus.square.dashed" catalog="system" title=""/>
                                 <connections>
                                     <segue destination="CT0-GG-GD7" kind="show" identifier="CreateExerciseSegue" id="irB-gC-wkU"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="07a-ng-VoO">
-                                <rect key="frame" x="0.0" y="167" width="414" height="646"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="07a-ng-VoO">
+                                <rect key="frame" x="0.0" y="154" width="414" height="659"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddExerciseTableViewCell" rowHeight="115" id="Fh3-Xh-EAv" customClass="AddExerciseTableViewCell">
@@ -381,12 +380,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an exercise" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQg-ks-8si">
+                                <rect key="frame" x="20" y="95" width="308" height="31.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Meo-Es-nWf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Pgb-iH-3pr" firstAttribute="centerX" secondItem="Meo-Es-nWf" secondAttribute="centerX" id="NGu-gy-fXO"/>
-                            <constraint firstItem="Pgb-iH-3pr" firstAttribute="top" secondItem="Meo-Es-nWf" secondAttribute="top" constant="10" id="gVE-O1-q6u"/>
+                            <constraint firstItem="Meo-Es-nWf" firstAttribute="trailing" secondItem="Pgb-iH-3pr" secondAttribute="trailing" constant="20" id="GK9-RR-eQk"/>
+                            <constraint firstItem="Pgb-iH-3pr" firstAttribute="top" secondItem="Meo-Es-nWf" secondAttribute="top" id="Igh-p3-CKA"/>
+                            <constraint firstItem="07a-ng-VoO" firstAttribute="top" secondItem="Pgb-iH-3pr" secondAttribute="bottom" constant="20" id="JKv-K4-LWv"/>
+                            <constraint firstItem="bQg-ks-8si" firstAttribute="leading" secondItem="Meo-Es-nWf" secondAttribute="leading" constant="20" id="cxO-2v-0zG"/>
+                            <constraint firstItem="bQg-ks-8si" firstAttribute="top" secondItem="Meo-Es-nWf" secondAttribute="top" constant="7" id="kzj-XC-ixC"/>
+                            <constraint firstItem="Pgb-iH-3pr" firstAttribute="leading" secondItem="bQg-ks-8si" secondAttribute="trailing" constant="20" id="rya-al-OIM"/>
+                            <constraint firstItem="Meo-Es-nWf" firstAttribute="trailing" secondItem="07a-ng-VoO" secondAttribute="trailing" id="sQV-v0-dlI"/>
+                            <constraint firstItem="07a-ng-VoO" firstAttribute="leading" secondItem="Meo-Es-nWf" secondAttribute="leading" id="tmp-F4-seK"/>
+                            <constraint firstItem="Meo-Es-nWf" firstAttribute="bottom" secondItem="07a-ng-VoO" secondAttribute="bottom" id="vB7-Vc-UD5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S84-34-f0w"/>
