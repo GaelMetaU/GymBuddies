@@ -62,11 +62,17 @@
     return self.exercises.count;
 }
 
+// When user selects an exercise, it returns to the routine screen and calls the delegate method
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.delegate didAddExercise:self.exercises[indexPath.row]];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark - Delegate methods
 
 - (void) didCreateExercise:(Exercise *)exercise{
-    [self.exercises addObject:exercise];
+    [self.exercises insertObject:exercise atIndex:0];
     [self.tableView reloadData];
 }
 
