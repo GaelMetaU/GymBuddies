@@ -10,6 +10,7 @@
 #import "AddExerciseTableViewCell.h"
 #import "SavedExercise.h"
 #import "CreateExerciseViewController.h"
+#import "AlertCreator.h"
 
 
 @interface AddExerciseViewController () <UITableViewDelegate, UITableViewDataSource, CreateExerciseViewControllerDelegate>
@@ -41,11 +42,10 @@
             }
             [self.tableView reloadData];
         } else {
-            [self _errorFetchingAlert:error.localizedDescription];
+            UIAlertController *alert = [AlertCreator createOkAlert:@"Error fetching exercises" message:error.localizedDescription];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
-    
-    //[ParseAPIManager fetchUsersExercises:^(NSArray * _Nonnull elements, NSError * _Nonnull error) {}];
 }
 
 
@@ -68,17 +68,6 @@
 - (void) didCreateExercise:(Exercise *)exercise{
     [self.exercises addObject:exercise];
     [self.tableView reloadData];
-}
-
-
-#pragma mark - Alerts
-
--(void)_errorFetchingAlert:(NSString *)message{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error fetching exercises" message:message preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

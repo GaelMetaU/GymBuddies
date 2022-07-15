@@ -62,7 +62,7 @@
     Exercise *exercise = [Exercise initWithAttributes:self.exerciseTitle caption:self.exerciseCaption author:[PFUser currentUser] video:self.exerciseVideo image:self.exerciseImage bodyZoneTag:self.exerciseBodyZoneTag];
     
     // When saving the object, it reasigns itself to include the objectID from Parse
-    exercise = [ParseAPIManager saveExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
+    exercise = [ParseAPIManager createExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
             if(!succeeded){
                 [self _failedSavingAlert:error.localizedDescription];
                 return;
