@@ -106,9 +106,7 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     BodyZoneCollectionViewCell *cell = [self.bodyZoneCollectionView dequeueReusableCellWithReuseIdentifier:@"BodyZoneCollectionViewCell" forIndexPath:indexPath];
     BodyZone *bodyZone = self.bodyZones[indexPath.item];
-    cell.iconView.file = bodyZone[@"icon"];
-    [cell.iconView loadInBackground];
-    cell.titleLabel.text = bodyZone[@"title"];
+    [cell setCellContent:bodyZone];
     
     return cell;
 }
