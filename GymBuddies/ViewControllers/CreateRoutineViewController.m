@@ -67,7 +67,16 @@
 }
 
 
-#pragma mark - AddExercise delegate method
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        [self.exerciseList removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [self updateBodyZones];
+    }
+}
+
+
+#pragma mark - AddExercise methods
 
 - (void) didAddExercise:(Exercise *)exercise{
     ExerciseInRoutine *exerciseInRoutine = [ExerciseInRoutine initWithExercise:exercise];
@@ -89,6 +98,18 @@
     }
     return false;
 }
+
+
+-(void) updateBodyZones{
+    [self.bodyZoneList removeAllObjects];
+    for(ExerciseInRoutine *exerciseInRoutine in self.exerciseList){
+        if(![self isInBodyZoneList:exerciseInRoutine.baseExercise.bodyZoneTag]){
+            [self.bodyZoneList addObject:exerciseInRoutine.baseExercise.bodyZoneTag];
+        }
+    }
+    [self.collectionView reloadData];
+}
+
 
 #pragma mark - Navigation
 
