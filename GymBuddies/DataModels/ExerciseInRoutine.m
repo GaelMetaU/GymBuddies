@@ -6,6 +6,7 @@
 //
 
 #import "ExerciseInRoutine.h"
+#import "SegmentedControlBlocksValues.h"
 
 @implementation ExerciseInRoutine
 @dynamic amount;
@@ -21,7 +22,7 @@
     ExerciseInRoutine *exerciseInRoutine = [ExerciseInRoutine new];
     exerciseInRoutine.baseExercise = exercise;
     exerciseInRoutine.amount = @10;
-    exerciseInRoutine.amountUnit = @2;
+    exerciseInRoutine.amountUnit = [NSNumber numberWithLong:ExerciseAmountUnitReps];
     exerciseInRoutine.numberOfSets = @4;
     
     return exerciseInRoutine;

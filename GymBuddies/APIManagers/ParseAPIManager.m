@@ -106,8 +106,8 @@
 }
 
 
-+ (void)postRoutine:(Routine *)routine exercises:(NSMutableArray *)exercises completion:(ParseManagerCreateCompletionBlock) completion{
-    Routine *newRoutine = [Routine initWithAttributes:routine.author exerciseList:exercises title:routine.title caption:routine.caption trainingLevel:routine.trainingLevel placeTag:routine.placeTag];
++ (void)postRoutine:(Routine *)routine completion:(ParseManagerCreateCompletionBlock) completion{
+    Routine *newRoutine = [Routine initWithAttributes:routine.author exerciseList:routine.exerciseList bodyZoneList:routine.bodyZoneList title:routine.title caption:routine.caption trainingLevel:routine.trainingLevel workoutPlace:routine.workoutPlace];
         
     ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError * _Nullable error){
         completion(succeeded, error);

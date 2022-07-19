@@ -6,6 +6,7 @@
 //
 
 #import "ExerciseInCreateRoutineTableViewCell.h"
+#import "SegmentedControlBlocksValues.h"
 
 @implementation ExerciseInCreateRoutineTableViewCell
 
@@ -29,16 +30,24 @@
     [self.bodyZoneIcon loadInBackground];
     self.exerciseTitle.text = self.exerciseInRoutine.baseExercise.title;
     
-    UIAction *reps = [UIAction actionWithTitle:@"reps" image:nil identifier:nil handler:^(UIAction *action){
-        NSLog(@"reps");
+    [self setDropdownMenu];
+}
+
+
+-(void)setDropdownMenu{
+    UIAction *reps = [UIAction actionWithTitle:@"repetitions" image:nil identifier:nil handler:^(UIAction *action){
+        self.exerciseInRoutine.amountUnit = [NSNumber numberWithLong:ExerciseAmountUnitReps];
+        [self.amountUnitDropdownMenu setTitle:@"reps" forState:UIControlStateNormal];
     }];
     
-    UIAction *sec = [UIAction actionWithTitle:@"sec" image:nil identifier:nil handler:^(UIAction *action){
-        NSLog(@"sec");
+    UIAction *sec = [UIAction actionWithTitle:@"seconds" image:nil identifier:nil handler:^(UIAction *action){
+        self.exerciseInRoutine.amountUnit = [NSNumber numberWithLong:ExerciseAmountUnitSeconds];
+        [self.amountUnitDropdownMenu setTitle:@"sec" forState:UIControlStateNormal];
     }];
     
-    UIAction *min = [UIAction actionWithTitle:@"min" image:nil identifier:nil handler:^(UIAction *action){
-        NSLog(@"min");
+    UIAction *min = [UIAction actionWithTitle:@"minutes" image:nil identifier:nil handler:^(UIAction *action){
+        self.exerciseInRoutine.amountUnit = [NSNumber numberWithLong:ExerciseAmountUnitMinutes];
+        [self.amountUnitDropdownMenu setTitle:@"min" forState:UIControlStateNormal];
     }];
     
     UIMenu *menu = [[UIMenu alloc]menuByReplacingChildren:[NSArray arrayWithObjects:reps, sec, min, nil]];
@@ -46,6 +55,12 @@
     self.amountUnitDropdownMenu.showsMenuAsPrimaryAction = YES;
 }
 
+
+- (IBAction)updateFieldsValues:(id)sender {
+    NSLog(@"update");
+    self.exerciseInRoutine.numberOfSets = @([self.numberOfSetsField.text integerValue]);
+    self.exerciseInRoutine.amount = @([self.numberOfRepsOrTimeField.text integerValue]);
+}
 
 
 @end

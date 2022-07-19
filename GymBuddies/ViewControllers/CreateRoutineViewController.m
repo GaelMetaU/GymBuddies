@@ -7,6 +7,8 @@
 
 #import "CreateRoutineViewController.h"
 #import "ParseAPIManager.h"
+#import "CommonValidations.h"
+#import "SegmentedControlBlocksValues.h"
 #import "AlertCreator.h"
 #import "BodyZoneCollectionViewCell.h"
 #import "AddExerciseViewController.h"
@@ -20,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *captionField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *trainingLevelSegmentedControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *workoutPlaceSegmentedControl;
 @property (strong, nonatomic) Routine *routine;
 @end
 
@@ -45,21 +49,48 @@
 #pragma mark - Posting
 
 - (IBAction)didTapDone:(id)sender {
-    NSMutableArray *exercisesToUpload = [[NSMutableArray alloc]init];
-    for(ExerciseInCreateRoutineTableViewCell *cell in self.tableView.visibleCells){
-        [exercisesToUpload addObject:cell.exerciseInRoutine];
-    }
-    self.routine.exerciseList = exercisesToUpload;
-    [ParseAPIManager postRoutine:self.routine exercises:exercisesToUpload completion:^(BOOL succeeded, NSError * _Nonnull error) {
-        if(succeeded){
-            NSLog(@"Yay");
-        } else {
+
+    self.routine.exerciseList = [self _collectTableViewContent];
+    self.routine.bodyZoneList = self.bodyZoneList;
+    self.routine.author = [PFUser currentUser];
+    
+    [self _setOutletValues];
+    
+    [ParseAPIManager postRoutine:self.routine completion:^(BOOL succeeded, NSError * _Nonnull error) {
+        if(!succeeded){
             UIAlertController *alert = [AlertCreator createOkAlert:@"Error saving routine" message:error.localizedDescription];
             [self presentViewController:alert animated:YES completion:nil];
+        } else{
+            
         }
     }];
 }
 
+
+-(void)_setOutletValues{
+    NSString *title = [CommonValidations standardizeUserAuthInput:self.titleField.text];
+    NSString *caption = [CommonValidations standardizeUserAuthInput:self.captionField.text];
+    if(title.length == 0){
+        title = [NSString stringWithFormat:@"%@'s Routine", [PFUser currentUser].username];
+    }
+    
+    TrainingLevels trainingLevel = [self.trainingLevelSegmentedControl selectedSegmentIndex];
+    WorkoutPlace workoutPlace = [self.workoutPlaceSegmentedControl selectedSegmentIndex];
+    
+    self.routine.title = title;
+    self.routine.caption = caption;
+    self.routine.trainingLevel = [NSNumber numberWithLong:trainingLevel];
+    self.routine.workoutPlace = [NSNumber numberWithLong:workoutPlace];
+}
+
+
+-(NSMutableArray *)_collectTableViewContent{
+    NSMutableArray *exercisesToUpload = [[NSMutableArray alloc]init];
+    for(ExerciseInCreateRoutineTableViewCell *cell in self.tableView.visibleCells){
+        [exercisesToUpload addObject:cell.exerciseInRoutine];
+    }
+    return exercisesToUpload;
+}
 
 
 #pragma mark - Collection view methods

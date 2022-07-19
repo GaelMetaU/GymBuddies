@@ -339,7 +339,10 @@
                                                                         <constraint firstAttribute="height" constant="34" id="rwJ-Sz-mXF"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue"/>
+                                                                    <connections>
+                                                                        <action selector="updateFieldsValues:" destination="6zl-pi-qyp" eventType="editingChanged" id="Xr7-Nz-wbv"/>
+                                                                    </connections>
                                                                 </textField>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="4" borderStyle="roundedRect" placeholder="10" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JU6-gJ-aZ4">
                                                                     <rect key="frame" x="279" y="55" width="44" height="34"/>
@@ -348,7 +351,10 @@
                                                                         <constraint firstAttribute="height" constant="34" id="IYq-u3-Ymg"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue" enablesReturnKeyAutomatically="YES"/>
+                                                                    <connections>
+                                                                        <action selector="updateFieldsValues:" destination="6zl-pi-qyp" eventType="editingChanged" id="FxX-3z-xl2"/>
+                                                                    </connections>
                                                                 </textField>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjs-pk-JBl">
                                                                     <rect key="frame" x="351" y="61" width="32" height="22"/>
@@ -385,7 +391,7 @@
                                                             <outlet property="exerciseImage" destination="fWK-3m-CvS" id="6dB-Mw-X0q"/>
                                                             <outlet property="exerciseTitle" destination="ssl-sW-4Lk" id="tp0-XK-cZl"/>
                                                             <outlet property="numberOfRepsOrTimeField" destination="uBb-oy-sS7" id="JwD-HC-qf6"/>
-                                                            <outlet property="numberOfSets" destination="JU6-gJ-aZ4" id="BIY-Xe-aZ9"/>
+                                                            <outlet property="numberOfSetsField" destination="JU6-gJ-aZ4" id="NV6-OB-7Ah"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -594,6 +600,8 @@
                         <outlet property="collectionView" destination="vJ3-vh-dyQ" id="DDt-LH-SDq"/>
                         <outlet property="tableView" destination="QVi-6L-d8L" id="soK-wD-0Hm"/>
                         <outlet property="titleField" destination="vo8-rR-z9n" id="ad5-pM-ThF"/>
+                        <outlet property="trainingLevelSegmentedControl" destination="fNz-bG-nUJ" id="yYK-K4-tOt"/>
+                        <outlet property="workoutPlaceSegmentedControl" destination="mRh-JM-4Wt" id="qFH-dA-Pp7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEP-Xd-vfC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
