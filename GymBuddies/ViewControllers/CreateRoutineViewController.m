@@ -9,6 +9,7 @@
 #import "BodyZoneCollectionViewCell.h"
 #import "AddExerciseViewController.h"
 #import "ExerciseInCreateRoutineTableViewCell.h"
+#import "ExerciseInRoutine.h"
 
 @interface CreateRoutineViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, AddExerciseViewControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *exerciseList;
@@ -69,13 +70,13 @@
 #pragma mark - AddExercise delegate method
 
 - (void) didAddExercise:(Exercise *)exercise{
-    [self.exerciseList addObject:exercise];
+    ExerciseInRoutine *exerciseInRoutine = [ExerciseInRoutine initWithExercise:exercise];
+    [self.exerciseList addObject:exerciseInRoutine];
     [self.tableView reloadData];
     
     if(![self isInBodyZoneList:exercise.bodyZoneTag]){
         [self.bodyZoneList addObject:exercise.bodyZoneTag];
         [self.collectionView reloadData];
-        NSLog(@"aaaaaaaaa %@", self.bodyZoneList);
     }
 }
 

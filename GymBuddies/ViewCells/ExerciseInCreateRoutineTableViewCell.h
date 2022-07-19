@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Parse/PFImageView.h"
-#import "Exercise.h"
+#import "ExerciseInRoutine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,8 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *exerciseTitle;
 @property (weak, nonatomic) IBOutlet UITextField *numberOfRepsOrTimeField;
 @property (weak, nonatomic) IBOutlet UITextField *numberOfSets;
-@property (strong, nonatomic) Exercise *exercise;
-- (void) setCellContent:(Exercise *)exercise;
+@property (weak, nonatomic) IBOutlet UIButton *amountUnitDropdownMenu;
+@property (strong, nonatomic) ExerciseInRoutine *exerciseInRoutine;
+- (void) setCellContent:(ExerciseInRoutine *)exerciseInRoutine;
 @end
 
 NS_ASSUME_NONNULL_END

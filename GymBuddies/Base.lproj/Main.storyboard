@@ -332,7 +332,7 @@
                                                                     <state key="normal" title="reps"/>
                                                                     <buttonConfiguration key="configuration" style="gray" title="reps"/>
                                                                 </button>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="10" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uBb-oy-sS7">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" placeholder="10" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uBb-oy-sS7">
                                                                     <rect key="frame" x="279" y="11" width="44" height="34"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="44" id="1f7-3x-6Xb"/>
@@ -341,7 +341,7 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="10" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JU6-gJ-aZ4">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="4" borderStyle="roundedRect" placeholder="10" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JU6-gJ-aZ4">
                                                                     <rect key="frame" x="279" y="55" width="44" height="34"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="44" id="FYI-QR-QwP"/>
@@ -380,6 +380,7 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="amountUnitDropdownMenu" destination="z8X-N1-Rjm" id="gMt-Mj-50Z"/>
                                                             <outlet property="bodyZoneIcon" destination="n12-dP-T1Q" id="THG-9f-khX"/>
                                                             <outlet property="exerciseImage" destination="fWK-3m-CvS" id="6dB-Mw-X0q"/>
                                                             <outlet property="exerciseTitle" destination="ssl-sW-4Lk" id="tp0-XK-cZl"/>

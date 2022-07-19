@@ -8,7 +8,6 @@
 #import "AddExerciseViewController.h"
 #import "ParseAPIManager.h"
 #import "AddExerciseTableViewCell.h"
-#import "SavedExercise.h"
 #import "CreateExerciseViewController.h"
 #import "AlertCreator.h"
 
@@ -37,8 +36,8 @@
 -(void)loadUsersExercises{
     [ParseAPIManager fetchUsersExercises:^(NSArray * _Nonnull elements, NSError * _Nonnull error) {
         if(elements!=nil){
-            for(SavedExercise *element in elements){
-                [self.exercises addObject:element.exercise];
+            for(PFObject *element in elements){
+                [self.exercises addObject:element[@"exercise"]];
             }
             [self.tableView reloadData];
         } else {
