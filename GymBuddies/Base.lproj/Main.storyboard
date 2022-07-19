@@ -282,14 +282,11 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64S-pb-M9N">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="687.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="905"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QVi-6L-d8L">
-                                                <rect key="frame" x="0.0" y="421.5" width="414" height="200"/>
+                                                <rect key="frame" x="0.0" y="421.5" width="414" height="483.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="p3K-jr-Ctg"/>
-                                                </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExerciseInCreateRoutineTableViewCell" rowHeight="100" id="6zl-pi-qyp" customClass="ExerciseInCreateRoutineTableViewCell">
                                                         <rect key="frame" x="0.0" y="44.5" width="414" height="100"/>
@@ -306,7 +303,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssl-sW-4Lk">
-                                                                    <rect key="frame" x="113" y="46" width="146" height="19.5"/>
+                                                                    <rect key="frame" x="113" y="43" width="146" height="19.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -377,7 +374,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="Mjs-pk-JBl" secondAttribute="trailing" constant="31" id="bWn-nZ-PUC"/>
                                                                 <constraint firstItem="Mjs-pk-JBl" firstAttribute="top" secondItem="z8X-N1-Rjm" secondAttribute="bottom" constant="20" id="c4p-8Q-Hbj"/>
                                                                 <constraint firstItem="Mjs-pk-JBl" firstAttribute="leading" secondItem="JU6-gJ-aZ4" secondAttribute="trailing" constant="28" id="dVe-ZU-O68"/>
-                                                                <constraint firstItem="ssl-sW-4Lk" firstAttribute="top" secondItem="n12-dP-T1Q" secondAttribute="bottom" constant="8" symbolic="YES" id="eaW-Mi-RxT"/>
+                                                                <constraint firstItem="ssl-sW-4Lk" firstAttribute="top" secondItem="n12-dP-T1Q" secondAttribute="bottom" constant="5" id="eaW-Mi-RxT"/>
                                                                 <constraint firstItem="z8X-N1-Rjm" firstAttribute="top" secondItem="cNv-BM-KCW" secondAttribute="top" constant="11" id="kDf-jl-KG8"/>
                                                                 <constraint firstItem="z8X-N1-Rjm" firstAttribute="leading" secondItem="uBb-oy-sS7" secondAttribute="trailing" constant="17" id="ren-Be-P5a"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Mjs-pk-JBl" secondAttribute="bottom" constant="17" id="s1f-qK-nG0"/>
@@ -394,22 +391,36 @@
                                                             <outlet property="numberOfSetsField" destination="JU6-gJ-aZ4" id="NV6-OB-7Ah"/>
                                                         </connections>
                                                     </tableViewCell>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddExerciseTableViewCell" id="rCh-o6-I73">
+                                                        <rect key="frame" x="0.0" y="144.5" width="414" height="43.5"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rCh-o6-I73" id="SA6-NR-yuc">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKI-6B-sKc">
+                                                                    <rect key="frame" x="133" y="6" width="148" height="31"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="31" id="4GN-rb-Vkw"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" title="Add an exercise">
+                                                                        <imageReference key="image" image="plus.square.dashed" catalog="system" symbolScale="large"/>
+                                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                                                    </buttonConfiguration>
+                                                                    <connections>
+                                                                        <segue destination="2gL-kd-hDQ" kind="show" identifier="AddExerciseSegue" id="fJW-4s-qVz"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="wKI-6B-sKc" secondAttribute="bottom" constant="6.5" id="14E-SN-K0a"/>
+                                                                <constraint firstItem="wKI-6B-sKc" firstAttribute="centerX" secondItem="SA6-NR-yuc" secondAttribute="centerX" id="jca-Zf-7vx"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
                                                 </prototypes>
                                             </tableView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKI-6B-sKc">
-                                                <rect key="frame" x="133" y="636.5" width="148" height="31"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="31" id="4GN-rb-Vkw"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Add an exercise">
-                                                    <imageReference key="image" image="plus.square.dashed" catalog="system" symbolScale="large"/>
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <segue destination="2gL-kd-hDQ" kind="show" identifier="AddExerciseSegue" id="fJW-4s-qVz"/>
-                                                </connections>
-                                            </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vo8-rR-z9n">
                                                 <rect key="frame" x="20" y="43" width="374" height="36"/>
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -542,17 +553,15 @@
                                             <constraint firstItem="fNz-bG-nUJ" firstAttribute="top" secondItem="vJ3-vh-dyQ" secondAttribute="bottom" constant="20" id="N2s-4o-0ug"/>
                                             <constraint firstAttribute="trailing" secondItem="vo8-rR-z9n" secondAttribute="trailing" constant="20" symbolic="YES" id="OxK-66-wCK"/>
                                             <constraint firstItem="vo8-rR-z9n" firstAttribute="top" secondItem="9hk-Bl-Jjg" secondAttribute="bottom" constant="8" symbolic="YES" id="P7I-2r-8R3"/>
+                                            <constraint firstAttribute="bottom" secondItem="QVi-6L-d8L" secondAttribute="bottom" id="QuB-pr-cf0"/>
                                             <constraint firstItem="QVi-6L-d8L" firstAttribute="leading" secondItem="64S-pb-M9N" secondAttribute="leading" id="Rgi-8J-DaX"/>
-                                            <constraint firstAttribute="bottom" secondItem="wKI-6B-sKc" secondAttribute="bottom" constant="20" id="S74-6W-EAG"/>
                                             <constraint firstAttribute="trailing" secondItem="mRh-JM-4Wt" secondAttribute="trailing" constant="35" id="YpF-c9-kzw"/>
-                                            <constraint firstItem="wKI-6B-sKc" firstAttribute="top" secondItem="QVi-6L-d8L" secondAttribute="bottom" constant="15" id="deg-Kt-3lf"/>
                                             <constraint firstItem="vJ3-vh-dyQ" firstAttribute="leading" secondItem="64S-pb-M9N" secondAttribute="leading" constant="20" symbolic="YES" id="did-sc-T2V"/>
                                             <constraint firstAttribute="trailing" secondItem="vJ3-vh-dyQ" secondAttribute="trailing" constant="20" symbolic="YES" id="dod-hb-SJg"/>
                                             <constraint firstAttribute="trailing" secondItem="QVi-6L-d8L" secondAttribute="trailing" id="goq-Jg-DIP"/>
                                             <constraint firstAttribute="trailing" secondItem="fLT-bt-cwe" secondAttribute="trailing" constant="20" symbolic="YES" id="htT-ao-iIl"/>
                                             <constraint firstItem="fLT-bt-cwe" firstAttribute="top" secondItem="EAe-3l-9Dl" secondAttribute="bottom" constant="10" id="koH-Ba-ych"/>
                                             <constraint firstItem="vo8-rR-z9n" firstAttribute="leading" secondItem="64S-pb-M9N" secondAttribute="leading" constant="20" symbolic="YES" id="oxe-xI-o6e"/>
-                                            <constraint firstItem="wKI-6B-sKc" firstAttribute="centerX" secondItem="64S-pb-M9N" secondAttribute="centerX" id="s74-Fu-23c"/>
                                             <constraint firstAttribute="trailing" secondItem="fNz-bG-nUJ" secondAttribute="trailing" constant="35" id="s9z-Sh-Rgo"/>
                                             <constraint firstItem="QVi-6L-d8L" firstAttribute="top" secondItem="mRh-JM-4Wt" secondAttribute="bottom" constant="20" id="wVk-fm-Rep"/>
                                             <constraint firstItem="fNz-bG-nUJ" firstAttribute="leading" secondItem="64S-pb-M9N" secondAttribute="leading" constant="35" id="z3u-ZF-SHF"/>
@@ -574,6 +583,7 @@
                         <constraints>
                             <constraint firstItem="Nm8-A6-jFe" firstAttribute="trailing" secondItem="PYl-Un-Ct1" secondAttribute="trailing" id="EiW-8W-iDH"/>
                             <constraint firstItem="PYl-Un-Ct1" firstAttribute="top" secondItem="Nm8-A6-jFe" secondAttribute="top" id="LfN-OU-0Qt"/>
+                            <constraint firstItem="QVi-6L-d8L" firstAttribute="height" secondItem="Nm8-A6-jFe" secondAttribute="height" multiplier="2:3" id="blT-gn-uLu"/>
                             <constraint firstItem="64S-pb-M9N" firstAttribute="width" secondItem="zIJ-yR-u5d" secondAttribute="width" id="ott-gO-j7i"/>
                             <constraint firstItem="PYl-Un-Ct1" firstAttribute="leading" secondItem="Nm8-A6-jFe" secondAttribute="leading" id="tbn-ci-1rf"/>
                             <constraint firstItem="Nm8-A6-jFe" firstAttribute="bottom" secondItem="PYl-Un-Ct1" secondAttribute="bottom" id="vjl-xC-eZF"/>

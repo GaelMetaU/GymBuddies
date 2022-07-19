@@ -57,7 +57,6 @@
 
 
 - (IBAction)updateFieldsValues:(id)sender {
-    NSLog(@"update");
     self.exerciseInRoutine.numberOfSets = @([self.numberOfSetsField.text integerValue]);
     self.exerciseInRoutine.amount = @([self.numberOfRepsOrTimeField.text integerValue]);
 }

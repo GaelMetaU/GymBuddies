@@ -61,7 +61,7 @@
             UIAlertController *alert = [AlertCreator createOkAlert:@"Error saving routine" message:error.localizedDescription];
             [self presentViewController:alert animated:YES completion:nil];
         } else{
-            
+            [self _resetScreen];
         }
     }];
 }
@@ -93,6 +93,21 @@
 }
 
 
+-(void)_resetScreen{
+    self.titleField.text = @"";
+    self.captionField.text = @"";
+    
+    self.trainingLevelSegmentedControl.selectedSegmentIndex = TrainingLevelBeginner;
+    self.workoutPlaceSegmentedControl.selectedSegmentIndex = WorkoutPlaceHome;
+    
+    [self.exerciseList removeAllObjects];
+    [self.bodyZoneList removeAllObjects];
+    
+    [self.tableView reloadData];
+    [self.collectionView reloadData];
+}
+
+
 #pragma mark - Collection view methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -111,14 +126,19 @@
 #pragma mark - TableView methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.exerciseList.count;
+    return self.exerciseList.count+1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ExerciseInCreateRoutineTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ExerciseInCreateRoutineTableViewCell"];
-    [cell setCellContent:self.exerciseList[indexPath.row]];
-    return cell;
+    if(indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section]-1){
+        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"AddExerciseTableViewCell"];
+        return cell;
+    } else{
+        ExerciseInCreateRoutineTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ExerciseInCreateRoutineTableViewCell"];
+        [cell setCellContent:self.exerciseList[indexPath.row]];
+        return cell;
+    }
 }
 
 
