@@ -6,6 +6,8 @@
 //
 
 #import "CreateRoutineViewController.h"
+#import "ParseAPIManager.h"
+#import "AlertCreator.h"
 #import "BodyZoneCollectionViewCell.h"
 #import "AddExerciseViewController.h"
 #import "ExerciseInCreateRoutineTableViewCell.h"
@@ -18,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *captionField;
-
+@property (strong, nonatomic) Routine *routine;
 @end
 
 @implementation CreateRoutineViewController
@@ -28,6 +30,8 @@
     
     self.exerciseList = [[NSMutableArray alloc]init];
     self.bodyZoneList = [[NSMutableArray alloc]init];
+    self.routine = [Routine new];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -36,6 +40,26 @@
     self.collectionView.delegate = self;
     // Do any additional setup after loading the view.
 }
+
+
+#pragma mark - Posting
+
+- (IBAction)didTapDone:(id)sender {
+    NSMutableArray *exercisesToUpload = [[NSMutableArray alloc]init];
+    for(ExerciseInCreateRoutineTableViewCell *cell in self.tableView.visibleCells){
+        [exercisesToUpload addObject:cell.exerciseInRoutine];
+    }
+    self.routine.exerciseList = exercisesToUpload;
+    [ParseAPIManager postRoutine:self.routine exercises:exercisesToUpload completion:^(BOOL succeeded, NSError * _Nonnull error) {
+        if(succeeded){
+            NSLog(@"Yay");
+        } else {
+            UIAlertController *alert = [AlertCreator createOkAlert:@"Error saving routine" message:error.localizedDescription];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
+}
+
 
 
 #pragma mark - Collection view methods

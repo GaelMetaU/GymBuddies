@@ -27,4 +27,19 @@
     return exerciseInRoutine;
 }
 
+
++(ExerciseInRoutine *) initWithAttributes:(Exercise *)exercise
+                                   amount:(NSNumber *)amount
+                               amountUnit:(NSNumber *)amountUnit
+                             numberOfSets:(NSNumber *)numberOfSets{
+    ExerciseInRoutine *exerciseInRoutine = [ExerciseInRoutine new];
+    exerciseInRoutine.baseExercise = exercise;
+    exerciseInRoutine.amount = amount;
+    exerciseInRoutine.amountUnit = amountUnit;
+    exerciseInRoutine.numberOfSets = numberOfSets;
+    
+    return exerciseInRoutine;
+}
+
+
 @end

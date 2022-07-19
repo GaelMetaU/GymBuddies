@@ -339,7 +339,7 @@
                                                                         <constraint firstAttribute="height" constant="34" id="rwJ-Sz-mXF"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="4" borderStyle="roundedRect" placeholder="10" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JU6-gJ-aZ4">
                                                                     <rect key="frame" x="279" y="55" width="44" height="34"/>
@@ -348,7 +348,7 @@
                                                                         <constraint firstAttribute="height" constant="34" id="IYq-u3-Ymg"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjs-pk-JBl">
                                                                     <rect key="frame" x="351" y="61" width="32" height="22"/>
@@ -580,7 +580,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Done"/>
+                                <connections>
+                                    <action selector="didTapDone:" destination="qY7-1U-Eu8" eventType="touchUpInside" id="HgP-yp-8QV"/>
+                                </connections>
                             </button>
+                            <connections>
+                                <action selector="didTapDone:" destination="qY7-1U-Eu8" id="ybe-3C-Uvf"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

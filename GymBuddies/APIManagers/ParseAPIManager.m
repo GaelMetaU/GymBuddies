@@ -106,6 +106,20 @@
 }
 
 
++ (void)postRoutine:(Routine *)routine exercises:(NSMutableArray *)exercises completion:(ParseManagerCreateCompletionBlock) completion{
+    Routine *newRoutine = [Routine initWithAttributes:routine.author exerciseList:exercises title:routine.title caption:routine.caption trainingLevel:routine.trainingLevel placeTag:routine.placeTag];
+        
+    ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError * _Nullable error){
+        completion(succeeded, error);
+        if(!succeeded){
+            return;
+        }
+    };
+    
+    [newRoutine saveInBackgroundWithBlock:block];
+}
+
+
 + (PFFileObject *)getPFFileFromURL:(NSURL *)video{
     if(!video){
         return nil;

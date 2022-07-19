@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "Parse/Parse.h"
 #import "Exercise.h"
+#import "Routine.h"
+#import "ExerciseInRoutine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,6 +36,8 @@ typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, 
 + (Exercise *)createExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion;
 
 + (void)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion;
+
++ (void)postRoutine:(Routine *)routine exercises:(NSMutableArray *)exercises completion:(ParseManagerCreateCompletionBlock) completion;
 
 + (PFFileObject *)getPFFileFromURL:(NSURL *)video;
 
