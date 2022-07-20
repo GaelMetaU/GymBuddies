@@ -8,13 +8,14 @@
 #import "RegisterViewController.h"
 #import "ParseAPIManager.h"
 #import "DataModelBlocks.h"
+#import "CommonValidations.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *skillLevelControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *trainingLevelControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *workoutPlaceControl;
 
 @end
@@ -30,10 +31,10 @@
 
 - (IBAction)didTapSubmit:(id)sender {
     
-    NSString *email = standardizeUserAuthInput(self.emailField.text);
-    NSString *username = standardizeUserAuthInput(self.usernameField.text);
-    NSString *password = standardizeUserAuthInput(self.passwordField.text) ;
-    NSString *confirmPassword = standardizeUserAuthInput(self.confirmPasswordField.text);
+    NSString *email = [CommonValidations standardizeUserAuthInput:self.emailField.text];
+    NSString *username = [CommonValidations standardizeUserAuthInput:self.usernameField.text];
+    NSString *password = [CommonValidations standardizeUserAuthInput:self.passwordField.text];
+    NSString *confirmPassword = [CommonValidations standardizeUserAuthInput:self.confirmPasswordField.text];
     
     if([self _lookForEmptyFields:username email:email password:password confirmPassword:confirmPassword]){
         [self _emptyFieldAlert];
@@ -45,7 +46,7 @@
         return;
     }
     
-    TrainingLevels level = [self.skillLevelControl selectedSegmentIndex];
+    TrainingLevels level = [self.trainingLevelControl selectedSegmentIndex];
     
     WorkoutPlace place = [self.workoutPlaceControl selectedSegmentIndex];
     
@@ -53,7 +54,7 @@
     user[@"email"] = email;
     user[@"username"] = username;
     user[@"password"] = password;
-    user[@"skillLevel"] = [NSNumber numberWithLong:level];
+    user[@"trainingLevel"] = [NSNumber numberWithLong:level];
     user[@"workoutPlace"] = [NSNumber numberWithLong:place];
     
     [ParseAPIManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
@@ -67,14 +68,6 @@
 }
 
 #pragma mark - Validations
-
-
-static NSString *standardizeUserAuthInput(NSString *input) {
-    if (input.length > 0) {
-            input = [input stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    }
-    return input;
-}
 
     
 - (BOOL)_lookForEmptyFields:(NSString *)username
