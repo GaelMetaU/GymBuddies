@@ -102,7 +102,6 @@
     };
     
     [query findObjectsInBackgroundWithBlock:block];
-    
 }
 
 

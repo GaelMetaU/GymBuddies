@@ -12,14 +12,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
+
 
 - (void) setCellContent:(ExerciseInRoutine *)exerciseInRoutine{
     _exerciseInRoutine = exerciseInRoutine;
@@ -33,7 +31,7 @@
     [self setDropdownMenu];
 }
 
-
+// Creates the menu and actions to be displayed when pressing the reps button
 -(void)setDropdownMenu{
     UIAction *reps = [UIAction actionWithTitle:@"repetitions" image:nil identifier:nil handler:^(UIAction *action){
         self.exerciseInRoutine.amountUnit = [NSNumber numberWithLong:ExerciseAmountUnitReps];
@@ -55,7 +53,7 @@
     self.amountUnitDropdownMenu.showsMenuAsPrimaryAction = YES;
 }
 
-
+// Handles changes on the exercise cell text fields
 - (IBAction)updateFieldsValues:(id)sender {
     self.exerciseInRoutine.numberOfSets = @([self.numberOfSetsField.text integerValue]);
     self.exerciseInRoutine.amount = @([self.numberOfRepsOrTimeField.text integerValue]);

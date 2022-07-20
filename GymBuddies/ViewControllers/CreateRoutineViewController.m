@@ -42,19 +42,16 @@
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    // Do any additional setup after loading the view.
 }
 
 
 #pragma mark - Posting
 
 - (IBAction)didTapDone:(id)sender {
-
-    self.routine.exerciseList = [self _collectTableViewContent];
-    self.routine.bodyZoneList = self.bodyZoneList;
-    self.routine.author = [PFUser currentUser];
     
-    [self _setOutletValues];
+    [self _collectDataSources];
+    
+    [self _collectUserInputFields];
     
     [ParseAPIManager postRoutine:self.routine completion:^(BOOL succeeded, NSError * _Nonnull error) {
         if(!succeeded){
@@ -66,8 +63,8 @@
     }];
 }
 
-
--(void)_setOutletValues{
+// Retrieves and standarizes all user input fields and adds them to the routine object
+-(void)_collectUserInputFields{
     NSString *title = [CommonValidations standardizeUserAuthInput:self.titleField.text];
     NSString *caption = [CommonValidations standardizeUserAuthInput:self.captionField.text];
     if(title.length == 0){
@@ -83,23 +80,27 @@
     self.routine.workoutPlace = [NSNumber numberWithLong:workoutPlace];
 }
 
-
--(NSMutableArray *)_collectTableViewContent{
+// Retrieves the data sources and user to add the to the routine object
+-(void)_collectDataSources{
     NSMutableArray *exercisesToUpload = [[NSMutableArray alloc]init];
     for(ExerciseInCreateRoutineTableViewCell *cell in self.tableView.visibleCells){
-        [exercisesToUpload addObject:cell.exerciseInRoutine];
+        if([cell.reuseIdentifier isEqualToString: @"ExerciseInCreateRoutineTableViewCell"]){
+            [exercisesToUpload addObject:cell.exerciseInRoutine];
+        }
     }
-    return exercisesToUpload;
+    self.routine.exerciseList = exercisesToUpload;
+    self.routine.bodyZoneList = self.bodyZoneList;
+    self.routine.author = [PFUser currentUser];
 }
 
-
+// Clears off all fields after completing a post
 -(void)_resetScreen{
     self.titleField.text = @"";
     self.captionField.text = @"";
     
     self.trainingLevelSegmentedControl.selectedSegmentIndex = TrainingLevelBeginner;
     self.workoutPlaceSegmentedControl.selectedSegmentIndex = WorkoutPlaceHome;
-    
+
     [self.exerciseList removeAllObjects];
     [self.bodyZoneList removeAllObjects];
     
@@ -141,7 +142,7 @@
     }
 }
 
-
+// Allows user to delete an exercise from the table view by swiping left
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(editingStyle == UITableViewCellEditingStyleDelete){
         [self.exerciseList removeObjectAtIndex:indexPath.row];
@@ -188,7 +189,6 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     BOOL isCreateExerciseSegue = [segue.identifier isEqualToString:@"AddExerciseSegue"];
     if(isCreateExerciseSegue){

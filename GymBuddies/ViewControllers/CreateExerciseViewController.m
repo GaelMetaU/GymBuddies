@@ -55,13 +55,11 @@
         [self _emptyBodyZoneTagAlert];
         return;
     }
-    
     // Sets the fields value to the posts, set default values if empty
     [self _setTitleCaptionValues];
     
     Exercise *exercise = [Exercise initWithAttributes:self.exerciseTitle caption:self.exerciseCaption author:[PFUser currentUser] video:self.exerciseVideo image:self.exerciseImage bodyZoneTag:self.exerciseBodyZoneTag];
-    
-    // When saving the object, it reasigns itself to include the objectID from Parse
+    // When uploading the object, it reasigns itself to include the objectID from Parse
     exercise = [ParseAPIManager createExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
             if(!succeeded){
                 [self _failedSavingAlert:error.localizedDescription];
@@ -89,7 +87,7 @@
 }
 
 
-#pragma mark -Collection View Data
+#pragma mark -Collection View Methods
 
 -(void)fetchBodyZones{
     [ParseAPIManager fetchBodyZones:^(NSArray * _Nonnull elements, NSError * _Nonnull error) {
@@ -197,15 +195,5 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-/*
- 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
