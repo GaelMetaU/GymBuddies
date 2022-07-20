@@ -55,21 +55,20 @@
         [self _emptyBodyZoneTagAlert];
         return;
     }
-    
     // Sets the fields value to the posts, set default values if empty
     [self _setTitleCaptionValues];
     
     Exercise *exercise = [Exercise initWithAttributes:self.exerciseTitle caption:self.exerciseCaption author:[PFUser currentUser] video:self.exerciseVideo image:self.exerciseImage bodyZoneTag:self.exerciseBodyZoneTag];
-
-    
-    [ParseAPIManager saveExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
+    // When uploading the object, it reasigns itself to include the objectID from Parse
+    exercise = [ParseAPIManager createExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
             if(!succeeded){
                 [self _failedSavingAlert:error.localizedDescription];
-            } else{
-                [self.delegate didCreateExercise:exercise];
-                [self.navigationController popViewControllerAnimated:YES];
+                return;
             }
     }];
+    
+    [self.delegate didCreateExercise:exercise];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -88,7 +87,7 @@
 }
 
 
-#pragma mark -Collection View Data
+#pragma mark -Collection View Methods
 
 -(void)fetchBodyZones{
     [ParseAPIManager fetchBodyZones:^(NSArray * _Nonnull elements, NSError * _Nonnull error) {
@@ -102,20 +101,14 @@
 }
 
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
-
-
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     BodyZoneCollectionViewCell *cell = [self.bodyZoneCollectionView dequeueReusableCellWithReuseIdentifier:@"BodyZoneCollectionViewCell" forIndexPath:indexPath];
     BodyZone *bodyZone = self.bodyZones[indexPath.item];
-    cell.iconView.file = bodyZone[@"icon"];
-    [cell.iconView loadInBackground];
-    cell.titleLabel.text = bodyZone[@"title"];
+    [cell setCellContent:bodyZone];
     
     return cell;
 }
+
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.bodyZones.count;
@@ -125,9 +118,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [self.bodyZoneCollectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor secondarySystemBackgroundColor];
-    NSLog(@"%@", self.bodyZones[indexPath.row][@"title"]);
     self.exerciseBodyZoneTag = self.bodyZones[indexPath.row];
 }
+
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [self.bodyZoneCollectionView cellForItemAtIndexPath:indexPath];
@@ -156,7 +149,6 @@
 }
 
 
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if([mediaType isEqualToString:(NSString*)kUTTypeMovie] ||  [mediaType isEqualToString:(NSString*)kUTTypeAVIMovie] || [mediaType isEqualToString:(NSString*)kUTTypeVideo] || [mediaType isEqualToString:(NSString*)kUTTypeMPEG4]){
@@ -169,8 +161,6 @@
         self.exerciseImage = image;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-    /*self.imagePreview.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self dismissViewControllerAnimated:YES completion:nil];*/
 }
 
 
@@ -205,15 +195,5 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-/*
- 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

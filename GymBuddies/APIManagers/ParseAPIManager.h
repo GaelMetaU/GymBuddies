@@ -1,5 +1,5 @@
 //
-//  ParseManager.h
+//  ParseAPIManager.h
 //  GymBuddies
 //
 //  Created by Gael Rodriguez Gomez on 7/7/22.
@@ -8,7 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "Parse/Parse.h"
 #import "Exercise.h"
-#import "SavedExercise.h"
+#import "Routine.h"
+#import "ExerciseInRoutine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,7 +31,13 @@ typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, 
 
 +(void)fetchBodyZones:(ParseManagerFetchingDataRowsCompletionBlock) completion;
 
++(void)fetchUsersExercises:(ParseManagerFetchingDataRowsCompletionBlock) completion;
+
++ (Exercise *)createExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion;
+
 + (void)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion;
+
++ (void)postRoutine:(Routine *)routine completion:(ParseManagerCreateCompletionBlock) completion;
 
 + (PFFileObject *)getPFFileFromURL:(NSURL *)video;
 
