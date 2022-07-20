@@ -7,11 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import "GoogleMaps/GoogleMaps.h"
+#import "CoreLocation/CoreLocation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GoogleMapsTableViewCell : UITableViewCell
+@interface GoogleMapsTableViewCell : UITableViewCell <CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *map;
+@property (strong, nonatomic) CLLocationManager *manager;
 -(void)setCellContent;
 @end
 

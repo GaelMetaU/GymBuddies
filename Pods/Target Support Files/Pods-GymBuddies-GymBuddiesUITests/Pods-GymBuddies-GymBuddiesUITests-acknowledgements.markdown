@@ -62,10 +62,6 @@ SOFTWARE.
 
 Copyright 2022 Google
 
-## GooglePlaces
-
-Copyright 2022 Google
-
 ## Parse
 
 BSD License
