@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
+#import "GoogleMaps/GoogleMaps.h"
 
 @interface AppDelegate ()
 
@@ -16,15 +17,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"../Keys" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
-    NSString *app = [dict objectForKey:@"parseAppID"];
-    NSString *key = [dict objectForKey:@"parseClientKey"];
+    NSString *parseAPIid = [dict objectForKey:@"parseAppID"];
+    NSString *parseKey = [dict objectForKey:@"parseClientKey"];
+    NSString *googleKey = [dict objectForKey:@"googleAPIKey"];
+    
+    [GMSServices provideAPIKey: googleKey];
     
     ParseClientConfiguration *config = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
-        configuration.applicationId = app;
-        configuration.clientKey = key;
+        configuration.applicationId = parseAPIid;
+        configuration.clientKey = parseKey;
         configuration.server = @"https://parseapi.back4app.com";
     }];
     
