@@ -6,18 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Exercise.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol AddExerciseViewControllerDelegate <NSObject>
-
-- (void) didAddExercise:(Exercise *)exercise;
-
-@end
-
 @interface AddExerciseViewController : UIViewController
-@property (nonatomic, weak) id<AddExerciseViewControllerDelegate> delegate;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,9 +7,8 @@
 
 #import "RegisterViewController.h"
 #import "ParseAPIManager.h"
-#import "SegmentedControlBlocksValues.h"
+#import "DataModelBlocks.h"
 #import "CommonValidations.h"
-#import "AlertCreator.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
@@ -38,14 +37,12 @@
     NSString *confirmPassword = [CommonValidations standardizeUserAuthInput:self.confirmPasswordField.text];
     
     if([self _lookForEmptyFields:username email:email password:password confirmPassword:confirmPassword]){
-        UIAlertController *alert = [AlertCreator createOkAlert:@"Empty field(s)" message:@"There is one or more empty fields"];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self _emptyFieldAlert];
         return;
     }
     
     if(![self _checkPasswordsMatching]){
-        UIAlertController *alert = [AlertCreator createOkAlert:@"Password not matching" message:@"Make sure both passwords you provide are the same"];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self _passwordsNotMatchingAlert];
         return;
     }
     
@@ -62,8 +59,8 @@
     
     [ParseAPIManager signUp:user completion:^(BOOL succeeded, NSError * _Nonnull error) {
         if(error != nil){
-            UIAlertController *alert = [AlertCreator createOkAlert:@"Error registering" message:error.localizedDescription];
-            [self presentViewController:alert animated:YES completion:nil];        } else {
+            [self _submitErrorAlert:[error localizedDescription]];
+        } else {
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
@@ -89,5 +86,37 @@
     
     return [password isEqualToString:confirmPassword];
 }
+
+
+#pragma mark - Alerts
+
+-(void)_emptyFieldAlert{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty field" message:@"There is one or more empty fields" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)_passwordsNotMatchingAlert{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password matching" message:@"Make sure both passwords you provide are the same" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+-(void)_submitErrorAlert:(NSString *)message{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Submit error" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 @end

@@ -1,5 +1,5 @@
 //
-//  ParseAPIManager.h
+//  ParseManager.h
 //  GymBuddies
 //
 //  Created by Gael Rodriguez Gomez on 7/7/22.
@@ -29,10 +29,6 @@ typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, 
 +(void)logOut:(ParseManagerLogOutCompletionBlock) completion;
 
 +(void)fetchBodyZones:(ParseManagerFetchingDataRowsCompletionBlock) completion;
-
-+(void)fetchUsersExercises:(ParseManagerFetchingDataRowsCompletionBlock) completion;
-
-+ (Exercise *)createExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion;
 
 + (void)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion;
 

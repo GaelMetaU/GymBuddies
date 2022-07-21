@@ -32,8 +32,6 @@
 		8E832E98287F351300BF0024 /* BodyZoneCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832E97287F351300BF0024 /* BodyZoneCollectionViewCell.m */; };
 		8E832E9B287F4B9200BF0024 /* CommonValidations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832E9A287F4B9200BF0024 /* CommonValidations.m */; };
 		8E832E9E28809DF200BF0024 /* SavedExercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832E9D28809DF200BF0024 /* SavedExercise.m */; };
-		8E832EA12880B1D000BF0024 /* AddExerciseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E832EA02880B1D000BF0024 /* AddExerciseTableViewCell.m */; };
-		8EF8226428820CCE0000DED9 /* AlertCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF8226328820CCE0000DED9 /* AlertCreator.m */; };
 		DC9627D1E793C6AF8B7EB821 /* Pods_GymBuddies_GymBuddiesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */; };
 		F6FC2A8384B8A8A5B0EC6986 /* Pods_GymBuddiesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF314264FFF381257F8E7EB /* Pods_GymBuddiesTests.framework */; };
 /* End PBXBuildFile section */
@@ -86,12 +84,13 @@
 		8E70893F28778E90008B4238 /* ParseAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseAPIManager.h; sourceTree = "<group>"; };
 		8E70894028778E90008B4238 /* ParseAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseAPIManager.m; sourceTree = "<group>"; };
 		8E70894228779209008B4238 /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		8E70894328779209008B4238 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
+		8E70894328779209008B4238 /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		8E7089452878DD81008B4238 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		8E7089462878DD81008B4238 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		8E70894F2878EBFE008B4238 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		8E7089502878EBFE008B4238 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		8E708952287CA6CC008B4238 /* SegmentedControlBlocksValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentedControlBlocksValues.h; sourceTree = "<group>"; };
+		8E708952287CA6CC008B4238 /* DataModelBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataModelBlocks.h; sourceTree = "<group>"; };
+		8E708954287CC0E3008B4238 /* ColorPallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPallet.h; sourceTree = "<group>"; };
 		8E708955287CDB69008B4238 /* CreateRoutineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateRoutineViewController.h; sourceTree = "<group>"; };
 		8E708956287CDB69008B4238 /* CreateRoutineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateRoutineViewController.m; sourceTree = "<group>"; };
 		8E708958287CDB8C008B4238 /* AddExerciseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddExerciseViewController.h; sourceTree = "<group>"; };
@@ -108,10 +107,6 @@
 		8E832E9A287F4B9200BF0024 /* CommonValidations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonValidations.m; sourceTree = "<group>"; };
 		8E832E9C28809DF200BF0024 /* SavedExercise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavedExercise.h; sourceTree = "<group>"; };
 		8E832E9D28809DF200BF0024 /* SavedExercise.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedExercise.m; sourceTree = "<group>"; };
-		8E832E9F2880B1D000BF0024 /* AddExerciseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddExerciseTableViewCell.h; sourceTree = "<group>"; };
-		8E832EA02880B1D000BF0024 /* AddExerciseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddExerciseTableViewCell.m; sourceTree = "<group>"; };
-		8EF8226228820CCE0000DED9 /* AlertCreator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertCreator.h; sourceTree = "<group>"; };
-		8EF8226328820CCE0000DED9 /* AlertCreator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertCreator.m; sourceTree = "<group>"; };
 		981C81EFFE7710F342AC177A /* Pods_GymBuddies_GymBuddiesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymBuddies_GymBuddiesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A78856D56610EA9C5B4F401 /* Pods-GymBuddiesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymBuddiesTests.debug.xcconfig"; path = "Target Support Files/Pods-GymBuddiesTests/Pods-GymBuddiesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -251,11 +246,10 @@
 		8E708953287CBECC008B4238 /* AppCommonResources */ = {
 			isa = PBXGroup;
 			children = (
-				8E708952287CA6CC008B4238 /* SegmentedControlBlocksValues.h */,
+				8E708952287CA6CC008B4238 /* DataModelBlocks.h */,
 				8E832E99287F4B9200BF0024 /* CommonValidations.h */,
 				8E832E9A287F4B9200BF0024 /* CommonValidations.m */,
-				8EF8226228820CCE0000DED9 /* AlertCreator.h */,
-				8EF8226328820CCE0000DED9 /* AlertCreator.m */,
+				8E708954287CC0E3008B4238 /* ColorPallet.h */,
 			);
 			path = AppCommonResources;
 			sourceTree = "<group>";
@@ -278,8 +272,6 @@
 			children = (
 				8E832E96287F351300BF0024 /* BodyZoneCollectionViewCell.h */,
 				8E832E97287F351300BF0024 /* BodyZoneCollectionViewCell.m */,
-				8E832E9F2880B1D000BF0024 /* AddExerciseTableViewCell.h */,
-				8E832EA02880B1D000BF0024 /* AddExerciseTableViewCell.m */,        
 				8E10A455288887A700DA1D9A /* GoogleMapsView.h */,
 				8E10A456288887A700DA1D9A /* GoogleMapsView.m */,
 			);
@@ -572,7 +564,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E832E98287F351300BF0024 /* BodyZoneCollectionViewCell.m in Sources */,
-				8EF8226428820CCE0000DED9 /* AlertCreator.m in Sources */,
 				8E70893D28777BF4008B4238 /* LoginViewController.m in Sources */,
 				8E70894428779209008B4238 /* RegisterViewController.m in Sources */,
 				8E7089512878EBFE008B4238 /* ProfileViewController.m in Sources */,
@@ -588,7 +579,6 @@
 				8E70890428775751008B4238 /* SceneDelegate.m in Sources */,
 				8E7089472878DD81008B4238 /* HomeViewController.m in Sources */,
 				8E832E9B287F4B9200BF0024 /* CommonValidations.m in Sources */,
-				8E832EA12880B1D000BF0024 /* AddExerciseTableViewCell.m in Sources */,
 				8E70894128778E90008B4238 /* ParseAPIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
