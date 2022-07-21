@@ -11,9 +11,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GoogleMapsTableViewCell : UITableViewCell <CLLocationManagerDelegate>
+@interface GoogleMapsView : UIView <CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *map;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *placesSegmentedControl;
 @property (strong, nonatomic) CLLocationManager *manager;
+@property CLLocationCoordinate2D currentLocation;
+@property (strong, nonatomic) NSMutableArray *parksList;
+@property (strong, nonatomic) NSMutableArray *gymsList;
+@property (strong, nonatomic) NSMutableArray *markers;
 -(void)setCellContent;
 @end
 
