@@ -10,18 +10,10 @@
 static NSString * const PLACE_TYPE_PARK = @"park";
 static NSString * const PLACE_TYPE_GYM = @"gym";
 
-@implementation GoogleMapsTableViewCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-}
+@implementation GoogleMapsView
 
 
--(void)setCellContent{
+-(void)setContent{
     self.manager = [CLLocationManager new];
     self.map.settings.compassButton = YES;
     [self.map setMyLocationEnabled:YES];
@@ -50,24 +42,22 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
     [self.markers removeAllObjects];
     
     if(isGym){
-        for(NSDictionary *gym in self.gymsList){
+        for(NSDictionary *gym in self.gymsDictionary){
             CLLocationDegrees latitude = [gym[@"geometry"][@"location"][@"lat"] doubleValue];
             CLLocationDegrees longitude = [gym[@"geometry"][@"location"][@"lng"] doubleValue];
 
             CLLocationCoordinate2D position = CLLocationCoordinate2DMake(latitude, longitude);
-            NSLog(@"%f , %f", position.latitude, position.longitude);
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
             marker.title = gym[@"name"];
             marker.map = self.map;
             [self.markers addObject:marker];
         }
     } else {
-        for(NSDictionary *park in self.parksList){
+        for(NSDictionary *park in self.parksDictionary){
             CLLocationDegrees latitude = [park[@"geometry"][@"location"][@"lat"] doubleValue];
             CLLocationDegrees longitude = [park[@"geometry"][@"location"][@"lng"] doubleValue];
 
             CLLocationCoordinate2D position = CLLocationCoordinate2DMake(latitude, longitude);
-            NSLog(@"%f , %f", position.latitude, position.longitude);
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
             marker.title = park[@"name"];
             marker.map = self.map;
@@ -83,14 +73,17 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
 
 
 -(void)setPlacesArrays{
+    BOOL isGym = self.placesSegmentedControl.selectedSegmentIndex;
+
+    //After fetching the places near the users, the markers are placed depending on the selected index of the segmented control
     [self fetchPlacesNearby:PLACE_TYPE_GYM completion:^(NSMutableArray * data) {
-        self.gymsList = data;
+        self.gymsDictionary = data;
+        [self placeMarkers:isGym];
     }];
     [self fetchPlacesNearby:PLACE_TYPE_PARK completion:^(NSMutableArray * data) {
-        self.parksList = data;
+        self.parksDictionary = data;
+        [self placeMarkers:isGym];
     }];
-    
-    [self placeMarkers:self.placesSegmentedControl.selectedSegmentIndex];
 }
 
 
@@ -102,7 +95,7 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
     NSString *googleAPIKey = [dict objectForKey:@"googleAPIKey"];
     //Creating request URL using the keys, location and type of place to search
-    NSString *baseURL = [NSString stringWithFormat: @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f%%2C%f&radius=1500&key=%@&type=%@", self.currentLocation.latitude, self.currentLocation.longitude, googleAPIKey, placeType];
+    NSString *baseURL = [NSString stringWithFormat: @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f%%2C%f&radius=5000&key=%@&type=%@", self.currentLocation.latitude, self.currentLocation.longitude, googleAPIKey, placeType];
     
     NSURL *URLRequest = [NSURL URLWithString:baseURL];
     
@@ -115,75 +108,12 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
     NSURLSessionDataTask *parkDataTask = [session dataTaskWithRequest:request
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                     if (error) {
-                                                        NSLog(@"%@", error);
                                                     } else {
                                                         NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                                        //self.parksList = [responseDictionary valueForKeyPath:@"results"];
                                                         return completion([responseDictionary valueForKeyPath:@"results"]);
-                                                        
                                                     }
                                                 }];
     [parkDataTask resume];
 }
-
-
-//-(void)fetchPlacesNearby{
-//
-//    // Retrieving Google API key
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"../Keys" ofType:@"plist"];
-//    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
-//    NSString *googleAPIKey = [dict objectForKey:@"googleAPIKey"];
-//    //Creating request URL using the keys, location and type of place to search
-//    NSString *baseURL = [NSString stringWithFormat: @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f%%2C%f&radius=1500&key=%@&type=", self.currentLocation.latitude, self.currentLocation.longitude, googleAPIKey];
-//    NSString *parksURL = [baseURL stringByAppendingString:PLACE_TYPE_PARK];
-//    NSString *gymsURL = [baseURL stringByAppendingString:PLACE_TYPE_GYM];
-//
-//    NSURL *parksURLRequest = [NSURL URLWithString:parksURL];
-//    NSURL *gymsURLRequest = [NSURL URLWithString:gymsURL];
-//
-//
-//    NSMutableURLRequest *parkRequest = [NSMutableURLRequest requestWithURL:parksURLRequest
-//                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
-//                                                           timeoutInterval:10.0];
-//    NSMutableURLRequest *gymRequest = [NSMutableURLRequest requestWithURL:gymsURLRequest
-//                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
-//                                                           timeoutInterval:10.0];
-//
-//    NSURLSession *session = [NSURLSession sharedSession];
-//
-//    NSURLSessionDataTask *parkDataTask = [session dataTaskWithRequest:parkRequest
-//                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                                                    if (error) {
-//                                                        NSLog(@"%@", error);
-//                                                    } else {
-//                                                        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//                                                        self.parksList = [responseDictionary valueForKeyPath:@"results"];
-//                                                        for(NSDictionary *place in self.parksList){
-//                                                            NSLog(@"park %f", [place[@"geometry"][@"location"][@"lat"] doubleValue]);
-//                                                        }
-//                                                    }
-//                                                }];
-//    [parkDataTask resume];
-//
-//    NSURLSessionDataTask *gymDataTask = [session dataTaskWithRequest:gymRequest
-//                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                                                    if (error) {
-//                                                        NSLog(@"%@", error);
-//                                                    } else {
-//                                                        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//                                                        self.gymsList = [responseDictionary valueForKeyPath:@"results"];
-//                                                        for(NSDictionary *place in self.gymsList){
-//                                                            NSLog(@"gym %f", [place[@"geometry"][@"location"][@"lat"] doubleValue]);
-//                                                        }
-//                                                    }
-//                                                }];
-//    [gymDataTask resume];
-//
-//    while([parkDataTask state] != NSURLSessionTaskStateCompleted && [gymDataTask state] != NSURLSessionTaskStateCompleted){
-//
-//    }
-//    NSLog(@"done");
-//
-//}
 
 @end

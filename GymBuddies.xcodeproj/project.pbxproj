@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5386A4E74F9A4613D5B1BC69 /* Pods_GymBuddies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A552040E1859E2C0F57C5F /* Pods_GymBuddies.framework */; };
-		8E10A457288887A700DA1D9A /* GoogleMapsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E10A456288887A700DA1D9A /* GoogleMapsTableViewCell.m */; };
+		8E10A457288887A700DA1D9A /* GoogleMapsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E10A456288887A700DA1D9A /* GoogleMapsView.m */; };
 		8E70890128775751008B4238 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E70890028775751008B4238 /* AppDelegate.m */; };
 		8E70890428775751008B4238 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E70890328775751008B4238 /* SceneDelegate.m */; };
 		8E70890A28775751008B4238 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E70890828775751008B4238 /* Main.storyboard */; };
@@ -61,8 +61,8 @@
 		5AF314264FFF381257F8E7EB /* Pods_GymBuddiesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymBuddiesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		601CC9BC3CF99C0875C26FC4 /* Pods-GymBuddies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymBuddies.debug.xcconfig"; path = "Target Support Files/Pods-GymBuddies/Pods-GymBuddies.debug.xcconfig"; sourceTree = "<group>"; };
 		81A552040E1859E2C0F57C5F /* Pods_GymBuddies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymBuddies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E10A455288887A700DA1D9A /* GoogleMapsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleMapsTableViewCell.h; sourceTree = "<group>"; };
-		8E10A456288887A700DA1D9A /* GoogleMapsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleMapsTableViewCell.m; sourceTree = "<group>"; };
+		8E10A455288887A700DA1D9A /* GoogleMapsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleMapsView.h; sourceTree = "<group>"; };
+		8E10A456288887A700DA1D9A /* GoogleMapsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleMapsView.m; sourceTree = "<group>"; };
 		8E7088FC28775751008B4238 /* GymBuddies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymBuddies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7088FF28775751008B4238 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E70890028775751008B4238 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -272,8 +272,8 @@
 			children = (
 				8E832E96287F351300BF0024 /* BodyZoneCollectionViewCell.h */,
 				8E832E97287F351300BF0024 /* BodyZoneCollectionViewCell.m */,
-				8E10A455288887A700DA1D9A /* GoogleMapsTableViewCell.h */,
-				8E10A456288887A700DA1D9A /* GoogleMapsTableViewCell.m */,
+				8E10A455288887A700DA1D9A /* GoogleMapsView.h */,
+				8E10A456288887A700DA1D9A /* GoogleMapsView.m */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -568,7 +568,7 @@
 				8E70894428779209008B4238 /* RegisterViewController.m in Sources */,
 				8E7089512878EBFE008B4238 /* ProfileViewController.m in Sources */,
 				8E708961287CEF40008B4238 /* BodyZone.m in Sources */,
-				8E10A457288887A700DA1D9A /* GoogleMapsTableViewCell.m in Sources */,
+				8E10A457288887A700DA1D9A /* GoogleMapsView.m in Sources */,
 				8E832E9E28809DF200BF0024 /* SavedExercise.m in Sources */,
 				8E708964287CEF5A008B4238 /* Exercise.m in Sources */,
 				8E70890128775751008B4238 /* AppDelegate.m in Sources */,
