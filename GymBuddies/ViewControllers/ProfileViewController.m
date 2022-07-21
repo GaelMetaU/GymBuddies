@@ -8,6 +8,7 @@
 #import "ProfileViewController.h"
 #import "ParseAPIManager.h"
 #import "SceneDelegate.h"
+#import "AlertCreator.h"
 
 @interface ProfileViewController ()
 @end
@@ -17,7 +18,8 @@
 - (IBAction)didTapLogOut:(id)sender {
     [ParseAPIManager logOut:^(NSError * _Nonnull error) {
         if(error){
-            [self _logOutErrorAlert:error.localizedDescription];
+            UIAlertController *alert = [AlertCreator createOkAlert:@"Error logging out" message:error.localizedDescription];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             SceneDelegate *delegate = (SceneDelegate *)self.view.window.windowScene.delegate;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -30,21 +32,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
-
-
-
-#pragma mark - Alerts
-
--(void)_logOutErrorAlert:(NSString *)message{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error logging out" message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
 
 
 /*
