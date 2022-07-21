@@ -6,16 +6,8 @@
 //
 
 #import "AddExerciseViewController.h"
-#import "ParseAPIManager.h"
-#import "AddExerciseTableViewCell.h"
-#import "SavedExercise.h"
-#import "CreateExerciseViewController.h"
-#import "AlertCreator.h"
 
-
-@interface AddExerciseViewController () <UITableViewDelegate, UITableViewDataSource, CreateExerciseViewControllerDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *exercises;
+@interface AddExerciseViewController ()
 
 @end
 
@@ -23,70 +15,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.exercises = [[NSMutableArray alloc]init];
-    [self loadUsersExercises];
+    // Do any additional setup after loading the view.
 }
 
-
-#pragma mark - Data fetching
-
--(void)loadUsersExercises{
-    [ParseAPIManager fetchUsersExercises:^(NSArray * _Nonnull elements, NSError * _Nonnull error) {
-        if(elements!=nil){
-            for(SavedExercise *element in elements){
-                [self.exercises addObject:element.exercise];
-            }
-            [self.tableView reloadData];
-        } else {
-            UIAlertController *alert = [AlertCreator createOkAlert:@"Error fetching exercises" message:error.localizedDescription];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-    }];
-}
-
-
-#pragma mark - Table view methods
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AddExerciseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddExerciseTableViewCell"];
-    [cell setExercise:self.exercises[indexPath.row]];
-    return cell;
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.exercises.count;
-}
-
-// When user selects an exercise, it returns to the routine screen and calls the delegate method
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.delegate didAddExercise:self.exercises[indexPath.row]];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-#pragma mark - Delegate methods
-
-- (void) didCreateExercise:(Exercise *)exercise{
-    [self.exercises insertObject:exercise atIndex:0];
-    [self.tableView reloadData];
-}
-
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    BOOL isCreateExerciseSegue = [segue.identifier isEqualToString:@"CreateExerciseSegue"];
-    if(isCreateExerciseSegue){
-        CreateExerciseViewController *createExerciseViewController = [segue destinationViewController];
-        createExerciseViewController.delegate = self;
-    }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
-
+*/
 
 @end

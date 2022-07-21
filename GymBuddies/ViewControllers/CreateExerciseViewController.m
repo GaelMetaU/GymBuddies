@@ -60,17 +60,16 @@
     [self _setTitleCaptionValues];
     
     Exercise *exercise = [Exercise initWithAttributes:self.exerciseTitle caption:self.exerciseCaption author:[PFUser currentUser] video:self.exerciseVideo image:self.exerciseImage bodyZoneTag:self.exerciseBodyZoneTag];
+
     
-    // When saving the object, it reasigns itself to include the objectID from Parse
-    exercise = [ParseAPIManager createExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
+    [ParseAPIManager saveExercise:exercise completion:^(BOOL succeeded, NSError * _Nonnull error) {
             if(!succeeded){
                 [self _failedSavingAlert:error.localizedDescription];
-                return;
+            } else{
+                [self.delegate didCreateExercise:exercise];
+                [self.navigationController popViewControllerAnimated:YES];
             }
     }];
-    
-    [self.delegate didCreateExercise:exercise];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -103,6 +102,11 @@
 }
 
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     BodyZoneCollectionViewCell *cell = [self.bodyZoneCollectionView dequeueReusableCellWithReuseIdentifier:@"BodyZoneCollectionViewCell" forIndexPath:indexPath];
     BodyZone *bodyZone = self.bodyZones[indexPath.item];
@@ -113,7 +117,6 @@
     return cell;
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.bodyZones.count;
 }
@@ -122,9 +125,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [self.bodyZoneCollectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor secondarySystemBackgroundColor];
+    NSLog(@"%@", self.bodyZones[indexPath.row][@"title"]);
     self.exerciseBodyZoneTag = self.bodyZones[indexPath.row];
 }
-
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [self.bodyZoneCollectionView cellForItemAtIndexPath:indexPath];
@@ -153,6 +156,7 @@
 }
 
 
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if([mediaType isEqualToString:(NSString*)kUTTypeMovie] ||  [mediaType isEqualToString:(NSString*)kUTTypeAVIMovie] || [mediaType isEqualToString:(NSString*)kUTTypeVideo] || [mediaType isEqualToString:(NSString*)kUTTypeMPEG4]){
@@ -165,6 +169,8 @@
         self.exerciseImage = image;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+    /*self.imagePreview.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [self dismissViewControllerAnimated:YES completion:nil];*/
 }
 
 

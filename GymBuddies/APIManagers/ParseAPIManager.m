@@ -54,58 +54,6 @@
     [query findObjectsInBackgroundWithBlock:block];
 }
 
-
-+ (Exercise *)createExercise:(Exercise *)exercise
-           completion:(ParseManagerCreateCompletionBlock) completion {
-    
-    Exercise *newExercise = [Exercise initWithAttributes:exercise.title caption:exercise.caption author:exercise.author video:exercise.video image:exercise.image bodyZoneTag:exercise.bodyZoneTag];
-    
-    ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError * _Nullable error){
-        completion(succeeded, error);
-        if(!succeeded){
-            return;
-        }
-    };
-    
-    [newExercise saveInBackgroundWithBlock:block];
-
-    [self saveExercise:newExercise completion:block];
-
-    return newExercise;
-}
-
-
-+ (void)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock)completion{
-    PFObject *savedExercise = [PFObject objectWithClassName:@"SavedExercise"];
-    
-    savedExercise[@"author"] = exercise.author;
-    savedExercise[@"exercise"] = exercise;
-    
-    ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError * _Nullable error){
-        completion(succeeded, error);
-        if(!succeeded){
-            return;
-        }
-    };
-    
-    [savedExercise saveInBackgroundWithBlock:block];
-}
-
-
-+ (void)fetchUsersExercises:(ParseManagerFetchingDataRowsCompletionBlock) completion{
-    PFQuery *query = [PFQuery queryWithClassName:@"SavedExercise"];
-    [query includeKeys:@[@"exercise", @"exercise.author", @"exercise.bodyZoneTag", @"exercise.image"]];
-    [query whereKey:@"user" equalTo:[PFUser currentUser]];
-
-    ParseManagerFetchingDataRowsCompletionBlock block = ^void(NSArray *elements, NSError *error){
-        completion(elements, error);
-    };
-    
-    [query findObjectsInBackgroundWithBlock:block];
-    
-}
-
-
 + (PFFileObject *)getPFFileFromURL:(NSURL *)video{
     if(!video){
         return nil;
@@ -130,6 +78,32 @@
     }
     
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+}
+
+
++ (void)saveExercise:(Exercise *)exercise
+           completion:(ParseManagerCreateCompletionBlock) completion {
+    Exercise *newExercise = [Exercise new];
+    newExercise.title = exercise.title;
+    newExercise.image = exercise.image;
+    newExercise.caption = exercise.caption;
+    newExercise.author = exercise.author;
+    newExercise.video = exercise.video;
+    newExercise.bodyZoneTag = exercise.bodyZoneTag;
+    
+    ParseManagerCreateCompletionBlock block = ^void(BOOL succeeded, NSError * _Nullable error){
+        completion(succeeded, error);
+        if(!succeeded){
+            return;
+        }
+    };
+    
+    [newExercise saveInBackgroundWithBlock:block];
+    
+    SavedExercise *savedExercise = [SavedExercise new];
+    savedExercise.user = exercise.author;
+    savedExercise.exercise = newExercise;
+    [savedExercise saveInBackgroundWithBlock:block];
 }
 
 @end
