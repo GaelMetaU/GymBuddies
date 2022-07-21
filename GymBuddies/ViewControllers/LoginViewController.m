@@ -9,6 +9,7 @@
 #import "Parse/Parse.h"
 #import "ParseAPIManager.h"
 #import "SceneDelegate.h"
+#import "AlertCreator.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -35,7 +36,8 @@
         
         [ParseAPIManager logIn:username password:password completion:^(PFUser * user, NSError *  error){
             if (error != nil) {
-                [self _wrongCredentialsAlert:[error localizedDescription]];
+                UIAlertController *alert = [AlertCreator createOkAlert:@"Error logging in" message:error.localizedDescription];
+                [self presentViewController:alert animated:YES completion:nil];
             }
             else {
                 SceneDelegate *delegate = (SceneDelegate *)self.view.window.windowScene.delegate;
@@ -45,12 +47,13 @@
         }];
     }
     else {
-        [self _emptyFieldAlert];
+        UIAlertController *alert = [AlertCreator createOkAlert:@"Empty field(s)" message:@"There is one or more empty fields"];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
 
-#pragma mark - Alerts and validations
+#pragma mark -  Validations
 
 - (BOOL)_lookForEmptyFields{
     NSString *username = self.usernameField.text;
@@ -59,25 +62,6 @@
     return (username.length == 0 || password.length == 0);
 }
 
-
--(void)_wrongCredentialsAlert:(NSString *)message{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Wrong username or password" message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-
--(void)_emptyFieldAlert{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty field" message:@"There is one or more empty fields" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-}
 
 /*
 #pragma mark - Navigation
