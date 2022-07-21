@@ -9,6 +9,7 @@ target 'GymBuddies' do
   pod 'Parse'
   pod 'Parse/UI'
   pod 'DateTools'
+  pod 'GoogleMaps', '7.0.0'
   
 
   target 'GymBuddiesTests' do

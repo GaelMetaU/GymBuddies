@@ -632,14 +632,70 @@
                     <view key="view" contentMode="scaleToFill" id="H7H-pu-5KW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eTb-fg-87C">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="s0O-lO-7wb" customClass="GoogleMapsView">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="337"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ic7-8z-jgG" customClass="GMSMapView">
+                                            <rect key="frame" x="0.0" y="61" width="414" height="276"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Ic7-8z-jgG" secondAttribute="height" multiplier="1.5:1" id="xzv-Gd-dX4"/>
+                                            </constraints>
+                                        </view>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Hf-lF-Vwo">
+                                            <rect key="frame" x="30" y="20" width="354" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="U6n-G7-O9V"/>
+                                            </constraints>
+                                            <segments>
+                                                <segment title="Parks"/>
+                                                <segment title="Gyms"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="updateMarkers:" destination="s0O-lO-7wb" eventType="valueChanged" id="vfu-OW-b0f"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Ic7-8z-jgG" secondAttribute="trailing" id="20M-J1-1ny"/>
+                                        <constraint firstItem="Ic7-8z-jgG" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" id="By8-Ig-G6H"/>
+                                        <constraint firstItem="0Hf-lF-Vwo" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" constant="30" id="Fae-Hv-sbq"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ic7-8z-jgG" secondAttribute="bottom" id="NYI-lB-AqE"/>
+                                        <constraint firstItem="0Hf-lF-Vwo" firstAttribute="top" secondItem="s0O-lO-7wb" secondAttribute="top" constant="20" id="PQK-iw-iAN"/>
+                                        <constraint firstAttribute="trailing" secondItem="0Hf-lF-Vwo" secondAttribute="trailing" constant="30" id="ZXB-xU-86R"/>
+                                        <constraint firstItem="Ic7-8z-jgG" firstAttribute="top" secondItem="0Hf-lF-Vwo" secondAttribute="bottom" constant="10" id="kl2-lj-xzE"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="map" destination="Ic7-8z-jgG" id="LSU-qL-LXf"/>
+                                        <outlet property="placesSegmentedControl" destination="0Hf-lF-Vwo" id="ubX-5e-C4v"/>
+                                    </connections>
+                                </view>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="8Ro-dl-8jV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eTb-fg-87C" firstAttribute="top" secondItem="8Ro-dl-8jV" secondAttribute="top" id="14l-qh-bNw"/>
+                            <constraint firstItem="8Ro-dl-8jV" firstAttribute="trailing" secondItem="eTb-fg-87C" secondAttribute="trailing" id="X9f-qm-Hi3"/>
+                            <constraint firstItem="eTb-fg-87C" firstAttribute="leading" secondItem="8Ro-dl-8jV" secondAttribute="leading" id="iOl-ZP-F1Z"/>
+                            <constraint firstItem="8Ro-dl-8jV" firstAttribute="bottom" secondItem="eTb-fg-87C" secondAttribute="bottom" id="nMc-Pp-ydb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QPG-DY-PmY"/>
+                    <connections>
+                        <outlet property="googleMapsView" destination="s0O-lO-7wb" id="h8h-m8-QSa"/>
+                        <outlet property="tableView" destination="eTb-fg-87C" id="vus-jv-JhZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEJ-JL-HpB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-320" y="2237"/>
+            <point key="canvasLocation" x="-320.28985507246381" y="2236.6071428571427"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="7K7-AJ-WBH">
