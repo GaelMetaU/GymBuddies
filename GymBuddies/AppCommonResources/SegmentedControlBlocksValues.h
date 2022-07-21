@@ -1,12 +1,12 @@
 //
-//  DataModelBlocks.h
+//  SegmentedControlBlocksValues.h
 //  GymBuddies
 //
 //  Created by Gael Rodriguez Gomez on 7/11/22.
 //
 
-#ifndef DataModelBlocks_h
-#define DataModelBlocks_h
+#ifndef SegmentedControlBlocksValues_h
+#define SegmentedControlBlocksValues_h
 
 typedef NS_ENUM(NSInteger, TrainingLevels){
     TrainingLevelBeginner,
@@ -20,4 +20,4 @@ typedef NS_ENUM(NSInteger, WorkoutPlace){
     WorkoutPlaceGym
 };
 
-#endif /* DataModelBlocks_h */
+#endif /* SegmentedControlBlocksValues_h */
