@@ -86,24 +86,21 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
 }
 
 
--(NSMutableAttributedString *)createGoogleMapsLink:(NSString *)address{
-    NSString *googleMapsURL = [NSString stringWithFormat:@"https://www.google.com/maps/place/%@", address];
-
-    NSMutableAttributedString *link = [[NSMutableAttributedString alloc]initWithString:address];
-    [link addAttribute: NSLinkAttributeName value:googleMapsURL range:NSMakeRange(0, link.length)];
-    return link;
-}
-
-
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction{
-    [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:nil];
-    return false;
+-(NSURL *)createGoogleMapsLink:(NSString *)address{
+    
+    return [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/maps/place/%@", address]];
 }
 
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
-    self.addressView.attributedText = [self createGoogleMapsLink:marker.snippet];
+    self.searchAddressButton.titleLabel.text = marker.snippet;
     return NO;
+}
+
+
+- (IBAction)didTapSearch:(id)sender {
+    NSURL *googleMapsURL =[self createGoogleMapsLink:self.searchAddressButton.titleLabel.text];
+    [[UIApplication sharedApplication]openURL:googleMapsURL options:@{} completionHandler:nil];
 }
 
 

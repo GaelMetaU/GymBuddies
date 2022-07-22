@@ -641,7 +641,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ic7-8z-jgG" customClass="GMSMapView">
-                                            <rect key="frame" x="0.0" y="60" width="414" height="239"/>
+                                            <rect key="frame" x="0.0" y="60" width="414" height="250"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="250" id="8OX-w9-0uV"/>
@@ -660,35 +660,33 @@
                                                 <action selector="updateMarkers:" destination="s0O-lO-7wb" eventType="valueChanged" id="vfu-OW-b0f"/>
                                             </connections>
                                         </segmentedControl>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Address" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="das-Zz-2kK">
-                                            <rect key="frame" x="30" y="307" width="354" height="30"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="dww-1Q-Lvb"/>
-                                            </constraints>
-                                            <color key="textColor" systemColor="labelColor"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                        </textView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSk-W7-TaQ">
+                                            <rect key="frame" x="20" y="310" width="374" height="27"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                            <connections>
+                                                <action selector="didTapSearch:" destination="s0O-lO-7wb" eventType="touchUpInside" id="FmT-K7-Xhh"/>
+                                                <action selector="didTapSearch:" destination="ABc-aj-dnq" eventType="touchUpInside" id="cMQ-FF-J1D"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="das-Zz-2kK" firstAttribute="top" secondItem="Ic7-8z-jgG" secondAttribute="bottom" constant="8" symbolic="YES" id="141-VO-Ap5"/>
                                         <constraint firstAttribute="trailing" secondItem="Ic7-8z-jgG" secondAttribute="trailing" id="20M-J1-1ny"/>
-                                        <constraint firstItem="das-Zz-2kK" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" constant="30" id="Ary-vO-BAB"/>
                                         <constraint firstItem="Ic7-8z-jgG" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" id="By8-Ig-G6H"/>
                                         <constraint firstItem="0Hf-lF-Vwo" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" constant="30" id="Fae-Hv-sbq"/>
                                         <constraint firstItem="0Hf-lF-Vwo" firstAttribute="top" secondItem="s0O-lO-7wb" secondAttribute="top" constant="20" id="PQK-iw-iAN"/>
+                                        <constraint firstItem="LSk-W7-TaQ" firstAttribute="top" secondItem="Ic7-8z-jgG" secondAttribute="bottom" id="PTq-NQ-4zY"/>
+                                        <constraint firstAttribute="bottom" secondItem="LSk-W7-TaQ" secondAttribute="bottom" id="WiI-WG-1gN"/>
                                         <constraint firstAttribute="trailing" secondItem="0Hf-lF-Vwo" secondAttribute="trailing" constant="30" id="ZXB-xU-86R"/>
+                                        <constraint firstAttribute="trailing" secondItem="LSk-W7-TaQ" secondAttribute="trailing" constant="20" id="bZz-YP-Sya"/>
                                         <constraint firstItem="Ic7-8z-jgG" firstAttribute="top" secondItem="0Hf-lF-Vwo" secondAttribute="bottom" constant="10" id="kl2-lj-xzE"/>
-                                        <constraint firstAttribute="trailing" secondItem="das-Zz-2kK" secondAttribute="trailing" constant="30" id="vOM-Tz-FfL"/>
-                                        <constraint firstAttribute="bottom" secondItem="das-Zz-2kK" secondAttribute="bottom" id="xQn-0s-tdS"/>
+                                        <constraint firstItem="LSk-W7-TaQ" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" constant="20" id="lPk-VO-959"/>
                                     </constraints>
                                     <connections>
-                                        <outlet property="addressView" destination="das-Zz-2kK" id="065-JL-aga"/>
                                         <outlet property="map" destination="Ic7-8z-jgG" id="LSU-qL-LXf"/>
                                         <outlet property="placesSegmentedControl" destination="0Hf-lF-Vwo" id="ubX-5e-C4v"/>
+                                        <outlet property="searchAddressButton" destination="LSk-W7-TaQ" id="2AI-fW-BY7"/>
                                     </connections>
                                 </view>
                             </tableView>
@@ -709,6 +707,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEJ-JL-HpB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ABc-aj-dnq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-320.28985507246381" y="2236.6071428571427"/>
         </scene>
