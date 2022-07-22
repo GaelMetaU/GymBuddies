@@ -46,18 +46,13 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
     
     if(isGym){
         for(GMSPlace *gym in self.gymsDictionary){
-//            CLLocationDegrees latitude = [gym[@"geometry"][@"location"][@"lat"] doubleValue];
-//            CLLocationDegrees longitude = [gym[@"geometry"][@"location"][@"lng"] doubleValue];
             
             CLLocationDegrees latitude = gym.coordinate.latitude;
             CLLocationDegrees longitude = gym.coordinate.longitude;
 
-
-
             CLLocationCoordinate2D position = CLLocationCoordinate2DMake(latitude, longitude);
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
-//            marker.title = gym[@"name"];
-//            marker.snippet = gym[@"formatted_address"];
+
             marker.title = gym.name;
             marker.snippet = gym.formattedAddress;
             marker.map = self.map;
@@ -65,18 +60,13 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
         }
     } else {
         for(GMSPlace *park in self.parksDictionary){
-            //CLLocationDegrees latitude = [park[@"geometry"][@"location"][@"lat"] doubleValue];
-            //CLLocationDegrees longitude = [park[@"geometry"][@"location"][@"lng"] doubleValue];
             
             CLLocationDegrees latitude = park.coordinate.latitude;
             CLLocationDegrees longitude = park.coordinate.longitude;
 
-
-
             CLLocationCoordinate2D position = CLLocationCoordinate2DMake(latitude, longitude);
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
-//            marker.title = park[@"name"];
-//            marker.snippet = park[@"formatted_address"];
+
             marker.title = park.name;
             marker.snippet = park.formattedAddress;
             marker.map = self.map;
@@ -87,19 +77,23 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
 
 
 -(NSURL *)createGoogleMapsLink:(NSString *)address{
-    
-    return [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/maps/place/%@", address]];
+    NSString *URLFormattedAddress = [address stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *googleMapsURLString = [NSString stringWithFormat:@"https://www.google.com/maps/place/%@", URLFormattedAddress];
+    NSLog(@"%@",googleMapsURLString);
+    return [NSURL URLWithString:googleMapsURLString];
 }
 
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
-    self.searchAddressButton.titleLabel.text = marker.snippet;
+    self.currentSearchAddress = marker.snippet;
+    NSLog(@"%@", self.currentSearchAddress);
     return NO;
 }
 
 
 - (IBAction)didTapSearch:(id)sender {
-    NSURL *googleMapsURL =[self createGoogleMapsLink:self.searchAddressButton.titleLabel.text];
+    NSURL *googleMapsURL =[self createGoogleMapsLink:self.currentSearchAddress];
+    NSLog(@"%@", googleMapsURL);
     [[UIApplication sharedApplication]openURL:googleMapsURL options:@{} completionHandler:nil];
 }
 
@@ -109,28 +103,22 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
 }
 
 
+#pragma mark - Places data fetching
+
 -(void)setPlacesArrays{
     BOOL isGym = self.placesSegmentedControl.selectedSegmentIndex;
 
     //After fetching the places near the users, the markers are placed depending on the selected index of the segmented control
     [self fetchPlacesNearby:PLACE_TYPE_GYM completion:^(NSMutableArray * data) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
             self.gymsDictionary = data;
-            [self placeMarkers:isGym];
-            NSLog(@"GYM");
-        });
     }];
     [self fetchPlacesNearby:PLACE_TYPE_PARK completion:^(NSMutableArray * data) {
-        dispatch_async(dispatch_get_main_queue(), ^{
             self.parksDictionary = data;
-            [self placeMarkers:isGym];
-            NSLog(@"PARK");
-        });
     }];
+    
+    [self placeMarkers:isGym];
 }
 
-
-#pragma mark - Places data fetching
 
 -(void)fetchPlacesNearby:(NSString *)placeType completion:(void(^)(NSMutableArray *))completion{
         
@@ -161,7 +149,6 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
                                                                 [self getPlaceDetails:place completion:^(GMSPlace *result) {
                                                                     if(result != nil){
                                                                         [placesToReturn addObject:result];
-                                                                        NSLog(@"PLACE %@", result.name);
                                                                     }
                                                                 }];
                                                             });

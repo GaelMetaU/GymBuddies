@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet GMSMapView *map;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *placesSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIButton *searchAddressButton;
+@property (strong, nonatomic) NSString *currentSearchAddress;
 @property (strong, nonatomic) CLLocationManager *manager;
 @property CLLocationCoordinate2D currentLocation;
 @property (strong, nonatomic) NSMutableArray *parksDictionary;
