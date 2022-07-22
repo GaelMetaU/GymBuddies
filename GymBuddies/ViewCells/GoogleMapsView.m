@@ -9,25 +9,31 @@
 
 static NSString * const PLACE_TYPE_PARK = @"park";
 static NSString * const PLACE_TYPE_GYM = @"gym";
+static float const MAP_CAMERA_ZOOM = 13.0;
 
 @implementation GoogleMapsView
 
 
 -(void)setContent{
     self.manager = [CLLocationManager new];
-    self.map.settings.compassButton = YES;
-    [self.map setMyLocationEnabled:YES];
-    self.map.settings.myLocationButton = YES;
-    self.map.delegate = self;
-    
-    self.currentLocation = self.manager.location.coordinate;
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.currentLocation.latitude longitude:self.currentLocation.longitude zoom:13.0];
-    self.map.camera = camera;
-    
     self.manager.delegate = self;
     [self.manager requestWhenInUseAuthorization];
     [self.manager startUpdatingLocation];
     
+    // Setting map's properties
+    self.map.settings.compassButton = YES;
+    [self.map setMyLocationEnabled:YES];
+    self.map.settings.myLocationButton = YES;
+
+    // Setting map's camera based on current location
+    self.currentLocation = self.manager.location.coordinate;
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.currentLocation.latitude longitude:self.currentLocation.longitude zoom:MAP_CAMERA_ZOOM];
+    self.map.camera = camera;
+    
+    //Setting search button
+    self.searchEnabledButton.changesSelectionAsPrimaryAction = YES;
+    
+    // Setting initial data
     [self setPlacesArrays];
 }
 
@@ -99,7 +105,9 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
 
 
 - (IBAction)updateMarkers:(id)sender {
-    [self placeMarkers:self.placesSegmentedControl.selectedSegmentIndex];
+    if(self.searchEnabledButton.isSelected){
+        [self placeMarkers:self.placesSegmentedControl.selectedSegmentIndex];
+    }
 }
 
 
@@ -174,4 +182,11 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
 }
 
 
+- (IBAction)enableSearch:(id)sender {
+    if(self.searchEnabledButton.isSelected){
+        [self placeMarkers:self.placesSegmentedControl.selectedSegmentIndex];
+    } else {
+        [self.map clear];
+    }
+}
 @end

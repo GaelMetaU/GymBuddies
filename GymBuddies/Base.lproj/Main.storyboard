@@ -637,7 +637,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="s0O-lO-7wb" customClass="GoogleMapsView">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="351"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="361"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ic7-8z-jgG" customClass="GMSMapView">
@@ -658,15 +658,15 @@
                                             </connections>
                                         </segmentedControl>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMy-I6-aZb">
-                                            <rect key="frame" x="20" y="310" width="45.5" height="31"/>
+                                            <rect key="frame" x="20" y="320" width="45.5" height="31"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system" title=""/>
                                             <connections>
-                                                <action selector="updateMarkers:" destination="s0O-lO-7wb" eventType="touchUpInside" id="NaO-mc-iKD"/>
+                                                <action selector="enableSearch:" destination="s0O-lO-7wb" eventType="touchUpInside" id="Z5i-3c-sPo"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSk-W7-TaQ">
-                                            <rect key="frame" x="85.5" y="310" width="308.5" height="31"/>
+                                            <rect key="frame" x="85.5" y="320" width="308.5" height="31"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Let's go!"/>
                                             <connections>
@@ -678,12 +678,13 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="Ic7-8z-jgG" secondAttribute="trailing" id="20M-J1-1ny"/>
+                                        <constraint firstItem="dMy-I6-aZb" firstAttribute="top" secondItem="Ic7-8z-jgG" secondAttribute="bottom" constant="10" id="8RB-HU-wPG"/>
                                         <constraint firstItem="Ic7-8z-jgG" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" id="By8-Ig-G6H"/>
                                         <constraint firstItem="dMy-I6-aZb" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" constant="20" id="Dkq-6c-ppW"/>
                                         <constraint firstItem="0Hf-lF-Vwo" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" constant="30" id="Fae-Hv-sbq"/>
                                         <constraint firstAttribute="bottom" secondItem="dMy-I6-aZb" secondAttribute="bottom" constant="10" id="G39-L5-rmW"/>
                                         <constraint firstItem="0Hf-lF-Vwo" firstAttribute="top" secondItem="s0O-lO-7wb" secondAttribute="top" constant="20" id="PQK-iw-iAN"/>
-                                        <constraint firstItem="LSk-W7-TaQ" firstAttribute="top" secondItem="Ic7-8z-jgG" secondAttribute="bottom" id="PTq-NQ-4zY"/>
+                                        <constraint firstItem="LSk-W7-TaQ" firstAttribute="top" secondItem="Ic7-8z-jgG" secondAttribute="bottom" constant="10" id="PTq-NQ-4zY"/>
                                         <constraint firstItem="LSk-W7-TaQ" firstAttribute="height" secondItem="dMy-I6-aZb" secondAttribute="height" id="RPs-5N-ZGJ"/>
                                         <constraint firstAttribute="bottom" secondItem="LSk-W7-TaQ" secondAttribute="bottom" constant="10" id="WiI-WG-1gN"/>
                                         <constraint firstAttribute="trailing" secondItem="0Hf-lF-Vwo" secondAttribute="trailing" constant="30" id="ZXB-xU-86R"/>
@@ -695,6 +696,7 @@
                                         <outlet property="map" destination="Ic7-8z-jgG" id="LSU-qL-LXf"/>
                                         <outlet property="placesSegmentedControl" destination="0Hf-lF-Vwo" id="ubX-5e-C4v"/>
                                         <outlet property="searchAddressButton" destination="LSk-W7-TaQ" id="2AI-fW-BY7"/>
+                                        <outlet property="searchEnabledButton" destination="dMy-I6-aZb" id="0uK-bB-55C"/>
                                     </connections>
                                 </view>
                             </tableView>
