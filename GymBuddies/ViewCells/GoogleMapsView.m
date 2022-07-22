@@ -18,6 +18,7 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
     self.map.settings.compassButton = YES;
     [self.map setMyLocationEnabled:YES];
     self.map.settings.myLocationButton = YES;
+    self.map.delegate = self;
     
     self.currentLocation = self.manager.location.coordinate;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.currentLocation.latitude longitude:self.currentLocation.longitude zoom:13.0];
@@ -37,33 +38,72 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
 }
 
 
+#pragma mark - Map markers
+
 -(void)placeMarkers:(BOOL)isGym{
     [self.map clear];
     [self.markers removeAllObjects];
     
     if(isGym){
-        for(NSDictionary *gym in self.gymsDictionary){
-            CLLocationDegrees latitude = [gym[@"geometry"][@"location"][@"lat"] doubleValue];
-            CLLocationDegrees longitude = [gym[@"geometry"][@"location"][@"lng"] doubleValue];
+        for(GMSPlace *gym in self.gymsDictionary){
+//            CLLocationDegrees latitude = [gym[@"geometry"][@"location"][@"lat"] doubleValue];
+//            CLLocationDegrees longitude = [gym[@"geometry"][@"location"][@"lng"] doubleValue];
+            
+            CLLocationDegrees latitude = gym.coordinate.latitude;
+            CLLocationDegrees longitude = gym.coordinate.longitude;
+
+
 
             CLLocationCoordinate2D position = CLLocationCoordinate2DMake(latitude, longitude);
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
-            marker.title = gym[@"name"];
+//            marker.title = gym[@"name"];
+//            marker.snippet = gym[@"formatted_address"];
+            marker.title = gym.name;
+            marker.snippet = gym.formattedAddress;
             marker.map = self.map;
             [self.markers addObject:marker];
         }
     } else {
-        for(NSDictionary *park in self.parksDictionary){
-            CLLocationDegrees latitude = [park[@"geometry"][@"location"][@"lat"] doubleValue];
-            CLLocationDegrees longitude = [park[@"geometry"][@"location"][@"lng"] doubleValue];
+        for(GMSPlace *park in self.parksDictionary){
+            //CLLocationDegrees latitude = [park[@"geometry"][@"location"][@"lat"] doubleValue];
+            //CLLocationDegrees longitude = [park[@"geometry"][@"location"][@"lng"] doubleValue];
+            
+            CLLocationDegrees latitude = park.coordinate.latitude;
+            CLLocationDegrees longitude = park.coordinate.longitude;
+
+
 
             CLLocationCoordinate2D position = CLLocationCoordinate2DMake(latitude, longitude);
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
-            marker.title = park[@"name"];
+//            marker.title = park[@"name"];
+//            marker.snippet = park[@"formatted_address"];
+            marker.title = park.name;
+            marker.snippet = park.formattedAddress;
             marker.map = self.map;
             [self.markers addObject:marker];
         }
     }
+}
+
+
+-(NSMutableAttributedString *)createGoogleMapsLink:(NSString *)address{
+    NSString *googleMapsURL = [NSString stringWithFormat:@"https://www.google.com/maps/place/%@", address];
+
+    NSMutableAttributedString *link = [[NSMutableAttributedString alloc]initWithString:address];
+    [link addAttribute: NSLinkAttributeName value:googleMapsURL range:NSMakeRange(0, link.length)];
+    return link;
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction{
+    [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:nil];
+    return false;
+}
+
+
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
+    self.addressView.attributedText = [self createGoogleMapsLink:marker.snippet];
+    return NO;
 }
 
 
@@ -77,16 +117,23 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
 
     //After fetching the places near the users, the markers are placed depending on the selected index of the segmented control
     [self fetchPlacesNearby:PLACE_TYPE_GYM completion:^(NSMutableArray * data) {
-        self.gymsDictionary = data;
-        [self placeMarkers:isGym];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.gymsDictionary = data;
+            [self placeMarkers:isGym];
+            NSLog(@"GYM");
+        });
     }];
     [self fetchPlacesNearby:PLACE_TYPE_PARK completion:^(NSMutableArray * data) {
-        self.parksDictionary = data;
-        [self placeMarkers:isGym];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.parksDictionary = data;
+            [self placeMarkers:isGym];
+            NSLog(@"PARK");
+        });
     }];
 }
 
 
+#pragma mark - Places data fetching
 
 -(void)fetchPlacesNearby:(NSString *)placeType completion:(void(^)(NSMutableArray *))completion{
         
@@ -109,11 +156,38 @@ static NSString * const PLACE_TYPE_GYM = @"gym";
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                     if (error) {
                                                     } else {
+                                                        NSMutableArray *placesToReturn = [[NSMutableArray alloc]init];
                                                         NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                                        return completion([responseDictionary valueForKeyPath:@"results"]);
+                                                        NSMutableArray *places = [responseDictionary valueForKey:@"results"];
+                                                        for (NSDictionary *place in places){
+                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                [self getPlaceDetails:place completion:^(GMSPlace *result) {
+                                                                    if(result != nil){
+                                                                        [placesToReturn addObject:result];
+                                                                        NSLog(@"PLACE %@", result.name);
+                                                                    }
+                                                                }];
+                                                            });
+                                                        }
+                                                        return completion(placesToReturn);
                                                     }
                                                 }];
     [parkDataTask resume];
 }
+
+
+-(void)getPlaceDetails:(NSDictionary *)place completion:(void (^)(GMSPlace *))completion{
+    GMSPlacesClient *placesClient = [GMSPlacesClient new];
+    GMSPlaceField fields = (GMSPlaceFieldName|GMSPlaceFieldFormattedAddress|GMSPlaceFieldCoordinate);
+    [placesClient fetchPlaceFromPlaceID:place[@"place_id"] placeFields:fields sessionToken:nil callback:^(GMSPlace * _Nullable result, NSError * _Nullable error) {
+            if (error != nil) {
+                return completion(nil);
+            }
+            if (result != nil) {
+                return completion(result);
+            }
+    }];
+}
+
 
 @end

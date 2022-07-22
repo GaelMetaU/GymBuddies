@@ -641,16 +641,16 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ic7-8z-jgG" customClass="GMSMapView">
-                                            <rect key="frame" x="0.0" y="61" width="414" height="276"/>
+                                            <rect key="frame" x="0.0" y="60" width="414" height="239"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="Ic7-8z-jgG" secondAttribute="height" multiplier="1.5:1" id="xzv-Gd-dX4"/>
+                                                <constraint firstAttribute="height" constant="250" id="8OX-w9-0uV"/>
                                             </constraints>
                                         </view>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Hf-lF-Vwo">
-                                            <rect key="frame" x="30" y="20" width="354" height="32"/>
+                                            <rect key="frame" x="30" y="20" width="354" height="31"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="U6n-G7-O9V"/>
+                                                <constraint firstAttribute="height" constant="30" id="U6n-G7-O9V"/>
                                             </constraints>
                                             <segments>
                                                 <segment title="Parks"/>
@@ -660,18 +660,33 @@
                                                 <action selector="updateMarkers:" destination="s0O-lO-7wb" eventType="valueChanged" id="vfu-OW-b0f"/>
                                             </connections>
                                         </segmentedControl>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Address" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="das-Zz-2kK">
+                                            <rect key="frame" x="30" y="307" width="354" height="30"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="dww-1Q-Lvb"/>
+                                            </constraints>
+                                            <color key="textColor" systemColor="labelColor"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                        </textView>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstItem="das-Zz-2kK" firstAttribute="top" secondItem="Ic7-8z-jgG" secondAttribute="bottom" constant="8" symbolic="YES" id="141-VO-Ap5"/>
                                         <constraint firstAttribute="trailing" secondItem="Ic7-8z-jgG" secondAttribute="trailing" id="20M-J1-1ny"/>
+                                        <constraint firstItem="das-Zz-2kK" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" constant="30" id="Ary-vO-BAB"/>
                                         <constraint firstItem="Ic7-8z-jgG" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" id="By8-Ig-G6H"/>
                                         <constraint firstItem="0Hf-lF-Vwo" firstAttribute="leading" secondItem="s0O-lO-7wb" secondAttribute="leading" constant="30" id="Fae-Hv-sbq"/>
-                                        <constraint firstAttribute="bottom" secondItem="Ic7-8z-jgG" secondAttribute="bottom" id="NYI-lB-AqE"/>
                                         <constraint firstItem="0Hf-lF-Vwo" firstAttribute="top" secondItem="s0O-lO-7wb" secondAttribute="top" constant="20" id="PQK-iw-iAN"/>
                                         <constraint firstAttribute="trailing" secondItem="0Hf-lF-Vwo" secondAttribute="trailing" constant="30" id="ZXB-xU-86R"/>
                                         <constraint firstItem="Ic7-8z-jgG" firstAttribute="top" secondItem="0Hf-lF-Vwo" secondAttribute="bottom" constant="10" id="kl2-lj-xzE"/>
+                                        <constraint firstAttribute="trailing" secondItem="das-Zz-2kK" secondAttribute="trailing" constant="30" id="vOM-Tz-FfL"/>
+                                        <constraint firstAttribute="bottom" secondItem="das-Zz-2kK" secondAttribute="bottom" id="xQn-0s-tdS"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="addressView" destination="das-Zz-2kK" id="065-JL-aga"/>
                                         <outlet property="map" destination="Ic7-8z-jgG" id="LSU-qL-LXf"/>
                                         <outlet property="placesSegmentedControl" destination="0Hf-lF-Vwo" id="ubX-5e-C4v"/>
                                     </connections>

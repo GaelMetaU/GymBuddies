@@ -7,13 +7,15 @@
 
 #import <UIKit/UIKit.h>
 #import "GoogleMaps/GoogleMaps.h"
+#import "GooglePlaces/GooglePlaces.h"
 #import "CoreLocation/CoreLocation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GoogleMapsView : UIView <CLLocationManagerDelegate>
+@interface GoogleMapsView : UIView <CLLocationManagerDelegate, GMSMapViewDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *map;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *placesSegmentedControl;
+@property (weak, nonatomic) IBOutlet UITextView *addressView;
 @property (strong, nonatomic) CLLocationManager *manager;
 @property CLLocationCoordinate2D currentLocation;
 @property (strong, nonatomic) NSMutableArray *parksDictionary;
