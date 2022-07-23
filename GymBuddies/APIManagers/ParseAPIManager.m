@@ -7,6 +7,9 @@
 
 #import "ParseAPIManager.h"
 
+static NSString * const SAVED_EXERCISE_CLASS = @"SavedExercise";
+static NSString * const ROUTINE_CLASS = @"Routine";
+
 
 @implementation ParseAPIManager
 
@@ -93,7 +96,7 @@
 
 
 + (void)fetchUsersExercises:(ParseManagerFetchingDataRowsCompletionBlock) completion{
-    PFQuery *query = [PFQuery queryWithClassName:@"SavedExercise"];
+    PFQuery *query = [PFQuery queryWithClassName:SAVED_EXERCISE_CLASS];
     [query includeKeys:@[@"exercise", @"exercise.author", @"exercise.bodyZoneTag", @"exercise.image"]];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
 
@@ -103,6 +106,17 @@
     
     [query findObjectsInBackgroundWithBlock:block];
     
+}
+
+
++ (void)fetchHomeTimelineRoutines:(ParseManagerFetchingDataRowsCompletionBlock) completion{
+    PFQuery *query = [PFQuery queryWithClassName:ROUTINE_CLASS];
+    
+    ParseManagerFetchingDataRowsCompletionBlock block = ^void(NSArray *elements, NSError *error){
+        completion(elements, error);
+    };
+    
+    [query findObjectsInBackgroundWithBlock:block];
 }
 
 

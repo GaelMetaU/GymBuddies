@@ -36,6 +36,8 @@ typedef void (^ParseManagerFetchingDataRowsCompletionBlock) (NSArray *elements, 
 
 + (void)saveExercise:(Exercise *)exercise completion:(ParseManagerCreateCompletionBlock) completion;
 
++ (void)fetchHomeTimelineRoutines:(ParseManagerFetchingDataRowsCompletionBlock) completion;
+
 + (PFFileObject *)getPFFileFromURL:(NSURL *)video;
 
 + (PFFileObject *)getPFFileFromImage:(UIImage *)image;
