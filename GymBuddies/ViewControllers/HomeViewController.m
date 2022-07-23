@@ -7,10 +7,13 @@
 
 #import "HomeViewController.h"
 #import "ParseAPIManager.h"
+#import "GoogleMaps/GoogleMaps.h"
+#import "CoreLocation/CoreLocation.h"
+#import "GoogleMapsView.h"
 
-@interface HomeViewController ()
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
-
+@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet GoogleMapsView *googleMapsView;
 
 @end
 
@@ -19,8 +22,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight =UITableViewAutomaticDimension;
+    
+    [self.googleMapsView setContent];
 }
 
+
+#pragma mark - Table view methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 0;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"GoogleMapsTableViewCell"];
+    return cell;
+}
 
 /*
 #pragma mark - Navigation
