@@ -24,6 +24,7 @@ static float const MAP_CAMERA_ZOOM = 13.0;
     self.map.settings.compassButton = YES;
     [self.map setMyLocationEnabled:YES];
     self.map.settings.myLocationButton = YES;
+    self.map.delegate = self;
 
     // Setting map's camera based on current location
     self.currentLocation = self.manager.location.coordinate;
@@ -82,8 +83,8 @@ static float const MAP_CAMERA_ZOOM = 13.0;
 }
 
 
--(NSURL *)createGoogleMapsLink:(NSString *)address{
-    NSString *URLFormattedAddress = [address stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+-(NSURL *)createGoogleMapsLink{
+    NSString *URLFormattedAddress = [self.currentSearchAddress stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *googleMapsURLString = [NSString stringWithFormat:@"https://www.google.com/maps/place/%@", URLFormattedAddress];
     NSLog(@"%@",googleMapsURLString);
     return [NSURL URLWithString:googleMapsURLString];
@@ -98,7 +99,7 @@ static float const MAP_CAMERA_ZOOM = 13.0;
 
 
 - (IBAction)didTapSearch:(id)sender {
-    NSURL *googleMapsURL =[self createGoogleMapsLink:self.currentSearchAddress];
+    NSURL *googleMapsURL =[self createGoogleMapsLink];
     NSLog(@"%@", googleMapsURL);
     [[UIApplication sharedApplication]openURL:googleMapsURL options:@{} completionHandler:nil];
 }

@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GoogleMapsView : UIView <CLLocationManagerDelegate>
+@interface GoogleMapsView : UIView <CLLocationManagerDelegate, GMSMapViewDelegate>
 @property (weak, nonatomic) IBOutlet GMSMapView *map;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *placesSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIButton *searchAddressButton;
@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *currentSearchAddress;
 @property (strong, nonatomic) CLLocationManager *manager;
 @property CLLocationCoordinate2D currentLocation;
+@property NSString *currentMarkerPlaceName;
 @property (strong, nonatomic) NSMutableArray *parksDictionary;
 @property (strong, nonatomic) NSMutableArray *gymsDictionary;
 @property (strong, nonatomic) NSMutableArray *markers;
