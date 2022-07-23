@@ -55,7 +55,7 @@
 }
 
 
-+ (Exercise *)createExercise:(Exercise *)exercise
++ (Exercise *)postExercise:(Exercise *)exercise
            completion:(ParseManagerCreateCompletionBlock) completion {
     
     Exercise *newExercise = [Exercise initWithAttributes:exercise.title caption:exercise.caption author:exercise.author video:exercise.video image:exercise.image bodyZoneTag:exercise.bodyZoneTag];

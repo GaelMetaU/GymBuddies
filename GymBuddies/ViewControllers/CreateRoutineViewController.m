@@ -15,6 +15,8 @@
 #import "ExerciseInCreateRoutineTableViewCell.h"
 #import "ExerciseInRoutine.h"
 
+static NSString * const ADD_EXERCISE_SEGUE_IDENTIFIER = @"AddExerciseSegue";
+
 @interface CreateRoutineViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, AddExerciseViewControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *exerciseList;
 @property (nonatomic, strong) NSMutableArray *bodyZoneList;
@@ -190,7 +192,7 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    BOOL isCreateExerciseSegue = [segue.identifier isEqualToString:@"AddExerciseSegue"];
+    BOOL isCreateExerciseSegue = [segue.identifier isEqualToString:ADD_EXERCISE_SEGUE_IDENTIFIER];
     if(isCreateExerciseSegue){
         AddExerciseViewController *addExerciseViewController = [segue destinationViewController];
         addExerciseViewController.delegate = self;

@@ -11,6 +11,7 @@
 #import "CreateExerciseViewController.h"
 #import "AlertCreator.h"
 
+static NSString * const CREATE_EXERCISE_SEGUE_IDENTIFIER = @"CreateExerciseSegue";
 
 @interface AddExerciseViewController () <UITableViewDelegate, UITableViewDataSource, CreateExerciseViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -79,7 +80,7 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    BOOL isCreateExerciseSegue = [segue.identifier isEqualToString:@"CreateExerciseSegue"];
+    BOOL isCreateExerciseSegue = [segue.identifier isEqualToString:CREATE_EXERCISE_SEGUE_IDENTIFIER];
     if(isCreateExerciseSegue){
         CreateExerciseViewController *createExerciseViewController = [segue destinationViewController];
         createExerciseViewController.delegate = self;
